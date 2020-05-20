@@ -1,0 +1,167 @@
+// 这里tab-panle 切换可能会造成图表渲染宽高不对，建议采用dom v-if 不使用 display 处理
+<template>
+          <card-block>
+            <el-tabs v-model="active" @tab-click="handleClick">
+              <el-tab-pane label="销售额" name="sale">
+                <el-row :gutter="20">
+                  <el-col :span="16">
+                    <Bar :containerIsShow="active === 'sale'" :option="dataSalesSource" />
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="rank-wrapper">
+                      <h4>
+                        门店前10名销售额排名情况
+                      </h4>
+                      <ul>
+                      <li v-for="(item, index) in rankSalesList" :key="item.id" :class="{active: index < 3}">
+                        <span>
+                          <i class="order-icon">{{index+1}}</i>
+                          <span>{{item.name}}</span>
+                        </span>
+                        <span class="sale-total">{{item.saleTotal}}</span>
+                      </li>
+                    </ul>
+                    </div>
+                  </el-col>
+                </el-row>
+              </el-tab-pane>
+              <el-tab-pane label="访问量" name="visited">
+                 <el-row :gutter="20">
+                  <el-col :span="16">
+                    <Bar :containerIsShow="active === 'visited'" :option="dataVisitedSource" />
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="rank-wrapper">
+                      <h4>
+                        门店前10名访问量排名情况
+                      </h4>
+                      <ul>
+                      <li v-for="(item, index) in rankVisitedList" :key="item.id" :class="{active: index < 3}">
+                        <span>
+                          <i class="order-icon">{{index+1}}</i>
+                          <span>{{item.name}}</span>
+                        </span>
+                        <span class="sale-total">{{item.saleTotal}}</span>
+                      </li>
+                    </ul>
+                    </div>
+                  </el-col>
+                </el-row>
+              </el-tab-pane>
+            </el-tabs>
+        </card-block>
+</template>
+<script>
+import CardBlock from '@/components/CardBlock'
+import { Bar } from '@/components/Charts'
+export default {
+  name: 'Dashboard',
+  data () {
+    return {
+      active: 'sale',
+      saleWrapperWidth: '',
+      dataSalesSource: {
+        xAxis: {
+          type: 'category',
+          data: ['1月', '2月', '3月', '4月']
+        },
+        yAxis: {
+          name: '销售趋势'
+        },
+        series: [
+          {
+            name: '第一季度',
+            type: 'bar',
+            data: [200, 400, 500, 800]
+          },
+          {
+            name: '第二季度',
+            type: 'bar',
+            data: [204, 410, 560, 700]
+          }
+        ]
+      },
+      rankSalesList: [
+        { name: 'xx路1号店面', saleTotal: 20000, id: 687 },
+        { name: 'xx路1号店面', saleTotal: 10620, id: 688 },
+        { name: 'xx路1号店面', saleTotal: 10300, id: 689 },
+        { name: 'xx路1号店面', saleTotal: 10200, id: 690 },
+        { name: 'xx路1号店面', saleTotal: 9000, id: 691 },
+        { name: 'xx路1号店面', saleTotal: 8000, id: 692 },
+        { name: 'xx路1号店面', saleTotal: 7000, id: 693 }
+      ],
+      dataVisitedSource: {
+        xAxis: {
+          type: 'category',
+          data: ['1月', '2月', '3月', '4月']
+        },
+        yAxis: {
+          name: '销售趋势'
+        },
+        series: [
+          {
+            name: '第一季度',
+            type: 'bar',
+            data: [200, 400, 100, 800]
+          },
+          {
+            name: '第二季度',
+            type: 'bar',
+            data: [204, 50, 560, 700]
+          }
+        ]
+      },
+      rankVisitedList: [
+        { name: 'xx路1号店面', saleTotal: 20000, id: 687 },
+        { name: 'xx路1号店面', saleTotal: 10600, id: 688 },
+        { name: 'xx路1号店面', saleTotal: 10300, id: 689 },
+        { name: 'xx路1号店面', saleTotal: 10200, id: 690 },
+        { name: 'xx路1号店面', saleTotal: 9000, id: 691 },
+        { name: 'xx路1号店面', saleTotal: 8000, id: 692 },
+        { name: 'xx路1号店面', saleTotal: 7000, id: 693 }
+      ]
+    }
+  },
+  components: {
+    CardBlock,
+    Bar
+  },
+  mounted () {
+  },
+  methods: {
+    handleClick (tab) {
+      this.active = tab.name;
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+    .rank-wrapper{
+          li{
+            height: $base-height;
+            line-height: $base-height;
+            display: flex;
+            justify-content: space-between;
+            &.active {
+              i {
+                color: #fff;
+                background-color: #314659;
+              }
+            }
+            i{
+              line-height: 20px;
+                text-align: center;
+                background-color: #fafafa;
+                border-radius: 20px;
+              margin-right: 16px;
+              font-weight: 600;
+                    font-size: 12px;
+              display: inline-block;
+               width: 20px;
+                    height: 20px;
+              font-style: normal;
+            }
+          }
+        }
+</style>

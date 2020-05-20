@@ -1,0 +1,38 @@
+
+@import './variables.scss';
+p{
+    margin:0;
+}
+a{
+  text-decoration: none;
+}
+h4{
+    font-weight: 400;
+}
+ul,li{
+    margin: 0;
+    list-style: none;
+}
+ul{
+    padding: 0;
+}
+html,body,#app{
+    height: 100%;
+}
+body{
+    color:rgba(0,0,0,.85);
+}
+.clearfix:after {
+    content: '';
+    line-height: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    display: block;
+}
+.extra-wrapper{
+    cursor: pointer;
+    float: right;
+    
+}
+// elem 样式reset
