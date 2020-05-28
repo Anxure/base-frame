@@ -1,13 +1,18 @@
 // 不需要权限的路由
 export const constantRoutes = [
   {
+    path: '/screenDataAls',
+    name: 'ScreenDataAls',
+    component: () => import('@/views/screenDataAls/Index.vue')
+  },
+  {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: () => import('@/views/Login.vue')
   },
   {
     path: '/404',
-    component: () => import('@/views/error-page/404.vue')
+    component: () => import('@/views/errorPage/404.vue')
   }
 ]
 // 需要权限的路由

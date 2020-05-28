@@ -48,7 +48,7 @@
   </div>
 </template>
 <script>
-import CardBlock from '@/components/CardBlock';
+import CardBlock from '@/components/CardBlock/Index.vue';
 import GroupList from './GroupList';
 import { Pie } from '@/components/Charts';
 export default {

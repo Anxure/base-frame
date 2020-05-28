@@ -52,7 +52,7 @@
         </card-block>
 </template>
 <script>
-import CardBlock from '@/components/CardBlock'
+import CardBlock from '@/components/CardBlock/Index.vue'
 import { Bar } from '@/components/Charts'
 export default {
   name: 'Dashboard',

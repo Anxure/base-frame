@@ -4,14 +4,17 @@
             <i :class="foldCls"></i>
         </div>
        <div class="nav-right-content">
-            <el-dropdown class="actions-item">
+            <el-dropdown class="actions-item" @command="handleCommand">
                 <div class="action-trigger">
                     <img :src="userInfo.avatar" class="avatar" alt="">
                     <span class="user-name">{{userInfo.name}}</span>
                 </div>
                 <el-dropdown-menu>
-                    <el-dropdown-item>
-                        <span style="display:block;" @click="logout">退出登录</span>
+                    <el-dropdown-item command="screen">
+                        大屏展示
+                    </el-dropdown-item>
+                    <el-dropdown-item command="loginOut">
+                        退出登录
                     </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
@@ -50,6 +53,16 @@ export default {
     ...mapActions(['loginOut']),
     toggleSideMenu () {
       this.TOGGLE_SIDERBAR();
+    },
+    handleCommand (key) {
+      switch (key) {
+        case 'loginOut':
+          this.logout();
+          break;
+        case 'screen':
+          this.$router.push({ path: '/screenDataAls' });
+          break;
+      }
     },
     logout () {
       this.$confirm('是否退出登录？', '系统提示', {

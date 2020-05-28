@@ -110,7 +110,7 @@
 
 <script>
 import { MiniArea, MiniBar, MiniProgress } from '@/components/Charts';
-import CardBlock from '@/components/CardBlock';
+import CardBlock from '@/components/CardBlock/Index.vue';
 import Trend from '@/components/Trend/Index.vue';
 export default {
   name: 'IntroduceRow',

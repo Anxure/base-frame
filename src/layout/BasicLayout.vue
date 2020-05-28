@@ -9,8 +9,10 @@
                  :style="{ width:`calc(100% - ${sideBarWidth})`}">
                 <Navbar></Navbar>
             </div>
-            <div class="main-content-body">
+            <div style="width:100%">
+                <div class="main-content-body">
                 <router-view></router-view>
+            </div>
             </div>
         </div>
     </div>
@@ -79,7 +81,6 @@ export default {
     }
     .basicLayout{
         /*左边菜单组件*/
-        display: flex;
         .sidebar-container{
             position: relative;
             z-index: 10;
@@ -94,10 +95,9 @@ export default {
         .main-content{
             background-color: $normalBg;
             transition: margin-left .28s;
-            flex:1;
             min-height:calc(100vh - 60px);
             .main-content-body {
-                margin:$base-margin;
+                padding:$base-margin;
             }
         }
         &.hideSidebar{
