@@ -122,10 +122,9 @@ router.afterEach(() => {
 /**
  * 检测传入的标识是否有权访问
  * @param {*} permission
- * @desc 这里采用的是后台返回角色的标识，例如 ['admin','add'] , ['editor'] ,前端按钮绑定有操作权限的角色，是一个数据 例如       v-permission = ['editor', 'admin'] 等等
+ * @desc 这里采用的是后台返回角色的标识，例如 ['admin','add'] , ['editor'] ,前端按钮绑定有操作权限的角色，是一个数据 例如       v-permission = ['editor', 'admin'] ，当然后台也可以返回根据模块来返回标识，前端同样的去匹配，例如后台返回['user:add','user:delete','menu:add']等等，前端使用 v-permission=['user:delete']等等
  */
-export function checkPermission (permissions) {
-  console.log(permissions)
+export const checkPermission = (permissions) => {
   const permission = store.state.role || [];
   if (permissions && permissions instanceof Array && permissions.length > 0) {
     const hasPermission = permission.some(role => {
