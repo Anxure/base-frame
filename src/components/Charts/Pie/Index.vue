@@ -1,19 +1,25 @@
 <template>
   <div class="chart-outer-container">
+    <div class="block-title" v-if="option.title && option.title.text">{{option.title.text}}</div>
     <!--loading显示-->
     <div class="loading-wrapper" v-if="loading">
       <a-spin :spinner="true"></a-spin>
     </div>
-    <div class="chart" v-else ref="chartNode" :style="{height:height,width:width}"></div>
+    <div v-else class="chart" ref="chartNode" :style="{height:chartH,width:width}"></div>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
 import { merge, cloneDeep } from 'lodash'
 import defaultOption from './defaultOption'
+import screenOption from './screenOption'
 export default {
   name: 'Pie',
   props: {
+    theme: {
+      type: String,
+      default: 'primary'
+    },
     loading: {
       type: Boolean,
       default: false
@@ -45,6 +51,16 @@ export default {
       defaultOption // 默认配置项
     }
   },
+  computed: {
+    chartH () {
+      let chartH = '100%';
+      const { title } = this.option;
+      if (title && title.text) {
+        chartH = 'calc(100% - 45px)';
+      }
+      return chartH
+    }
+  },
   components: { },
   mounted () {
     this.initChart();
@@ -68,7 +84,8 @@ export default {
     },
     setOptions () {
       if (!this.$refs.chartNode) { return };
-      const copyDefOption = cloneDeep(this.defaultOption);
+      console.log(this.theme);
+      const copyDefOption = cloneDeep(this.theme === 'primary' ? defaultOption : screenOption);
       const { series: propsSeries } = copyDefOption;
       // 合并后进行处理(注意这里请使用深拷贝)
       const newOption = cloneDeep(merge(copyDefOption, this.option));

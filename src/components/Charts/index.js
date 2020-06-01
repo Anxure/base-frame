@@ -11,6 +11,7 @@ import LiquidFill from './LiquidFill/Index.vue'
 import MiniArea from './MiniArea/Index.vue'
 import MiniBar from './MiniBar/Index.vue'
 import MiniProgress from './MiniProgress/Index.vue'
+import Radar from './Radar/Index.vue'
 import echarts from 'echarts'
 import themeData from '@/assets/walden.project.json'
 // 导入自定义主题（可导入echart主题配置工具进行修改 https://www.echartsjs.com/theme-builder/）
@@ -22,5 +23,6 @@ export {
   Pie,
   MiniArea,
   MiniBar,
-  MiniProgress
+  MiniProgress,
+  Radar
 }

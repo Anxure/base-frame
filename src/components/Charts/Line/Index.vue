@@ -1,14 +1,11 @@
 <template>
   <div class="chart-outer-container">
+    <div class="block-title" v-if="option.title && option.title.text">{{option.title.text}}</div>
     <!--loading显示-->
     <div class="loading-wrapper" v-if="loading">
       <a-spin :spinner="true"></a-spin>
     </div>
-    <div v-else :style="{height:chartH,width:width}">
-      <div :style="{height:'100%',width:width}">
-        <div class="chart" ref="chartNode" :style="{height:'100%',width:width}"></div>
-      </div>
-    </div>
+    <div v-else class="chart" ref="chartNode" :style="{height:chartH,width:width}"></div>
   </div>
 </template>
 <script>
@@ -51,7 +48,7 @@ export default {
       let chartH = '100%';
       const { title } = this.option;
       if (title && title.text) {
-        chartH = 'calc(100% - 0.45rem)';
+        chartH = 'calc(100% - 45px)';
       }
       return chartH
     }

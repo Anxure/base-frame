@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="title c-c-fs">{{sortTitle}}</div>
+      <div class="block-title">{{sortTitle}}</div>
       <div class="sort-title r-nw-sb-c">
         <span v-for="(item, index) in sortHeader" :key="index" :style="{width: item.width}" :class="index === 0 ? 'r-nw-fs-c': 'r-nw-c-c'">
           <img class="praise" v-if="praise === 'praise' && index === 0" :src="praiseIcon" />
@@ -15,8 +15,8 @@
           <span style="width: 15%">{{item.hot}}</span>
           <span class="r-nw-c-c" style="width: 15%">
             {{item.scale}}
-            <img style="width: 10px;height: 10px" :src="upIcon" v-if="item.arrows === 1"/>
-            <img style="width: 10px;height: 10px" :src="downIcon" v-else-if="item.arrows === -1"/>
+            <img style="width: 10px;height: 10px;margin-left:3px" :src="upIcon" v-if="item.arrows === 1"/>
+            <img style="width: 10px;height: 10px;margin-left:3px" :src="downIcon" v-else-if="item.arrows === -1"/>
             <b v-else style='color:#fff;margin-left:3px'>-</b>
           </span>
         </div>
@@ -103,14 +103,6 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
   .container {
     height: 100%;
-    margin: 0 2%;
-    .title {
-      height: 40px;
-      color: #fff;
-      font-size: 16px;
-      position: relative;
-      z-index: 9999999;
-    }
     .sort-title {
       width: 100%;
       height: 30px;
@@ -153,12 +145,6 @@ export default {
           color: #fff;
         }
       }
-    }
-    .c-c-fs {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
     }
     .r-nw-sb-c {
         display: flex;

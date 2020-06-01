@@ -107,7 +107,7 @@ export default {
     },
     height: {
       type: String,
-      default: '100px'
+      default: '70px'
     },
     sourceData: {
       type: Object,

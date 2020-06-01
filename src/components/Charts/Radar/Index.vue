@@ -11,10 +11,9 @@
 <script>
 import echarts from 'echarts'
 import { merge, cloneDeep } from 'lodash'
-import defaultOption from './defaultOption'
 import screenOption from './screenOption'
 export default {
-  name: 'Bar',
+  name: 'Radar',
   props: {
     theme: {
       type: String,
@@ -39,7 +38,7 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '100%'
     },
     option: {
       type: Object,
@@ -88,11 +87,10 @@ export default {
       if (!this.$refs.chartNode) { return };
       const { series: propsSeries } = this.option;
       const copyOption = cloneDeep(this.option);
-      const copyDefOption = cloneDeep(this.theme === 'primary' ? defaultOption : screenOption);
+      const copyDefOption = cloneDeep(screenOption);
       console.log(merge(copyDefOption, copyOption));
       // 合并后进行处理(注意这里请使用深拷贝)
       const newOption = cloneDeep(merge(copyDefOption, copyOption));
-      propsSeries.length > 1 && (newOption.legend.show = true); // 多系列显示legend
       const { series } = newOption;
       newOption.series = series.slice(0, propsSeries.length); // 去除多余的系列  形如 默认配置 3系列 只传入单系列
       this.chart.setOption(newOption)
