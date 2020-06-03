@@ -29,16 +29,19 @@ export default {
       }
     }
   },
+  // 也可以使用title设置（注意这里环形偏移的话，此方式无法居中 对应提问：https://github.com/apache/incubator-echarts/issues/11889）
   graphic: { // 图形中间文字(默认处理4字两行偏移)
-    type: 'text',
-    left: '27%',
-    top: '50%',
-    style: {
-      text: '',
-      fontSize: 14,
-      fill: 'rgba(0,0,0,.65)',
-      textAlign: 'center'
-    }
+    elements: [{
+      type: 'text',
+      style: {
+        text: '',
+        fontSize: 14,
+        fill: 'rgba(0,0,0,.65)',
+        textAlign: 'center'
+      },
+      left: 'center',
+      top: 'center'
+    }]
   },
   tooltip: {
     trigger: 'item'
@@ -46,7 +49,7 @@ export default {
   series: [
     {
       type: 'pie',
-      center: ['33%', '57%'],
+      center: ['50%', '50%'],
       label: {
         color: '#7892C8',
         formatter: (params) => {

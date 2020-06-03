@@ -92,6 +92,16 @@ export default {
       console.log(merge(copyDefOption, copyOption));
       // 合并后进行处理(注意这里请使用深拷贝)
       const newOption = cloneDeep(merge(copyDefOption, copyOption));
+      if (this.theme === 'screen') {
+        newOption.tooltip.formatter = (params) => {
+          const contentStr = params.map(param => {
+            return ` <div class="tips-content">
+                      ${param.seriesName}:<span class="value">${param.value}</span>
+                    </div>`
+          }).join('');
+          return `<div class="tips-box">${contentStr}</div>`
+        }
+      }
       propsSeries.length > 1 && (newOption.legend.show = true); // 多系列显示legend
       const { series } = newOption;
       newOption.series = series.slice(0, propsSeries.length); // 去除多余的系列  形如 默认配置 3系列 只传入单系列

@@ -367,6 +367,7 @@ export default {
           height:95vh;
           padding-top:5vh;
           .line-block{
+            overflow: hidden;
             height: 33.33%;
             &.middle{
               height:66.66%;

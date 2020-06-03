@@ -90,22 +90,44 @@ export default {
       // 合并后进行处理(注意这里请使用深拷贝)
       const newOption = cloneDeep(merge(copyDefOption, this.option));
       // 设置中间显示文字换行
-      if (!newOption.graphic.style.text) {
+      if (!newOption.graphic.elements[0].style.text) {
         const defaultName = propsSeries[0].name; const result = [];
         for (let i = 0; i < defaultName.length; i += this.changeLineNum) {
           result.push(defaultName.split('').slice(i, i + this.changeLineNum));
         }
-        newOption.graphic.style.text = result.join('\n').replace(/,/g, '');
+        newOption.graphic.elements[0].style.text = result.join('\n').replace(/,/g, '');
       }
-      // 配置tootip
-      newOption.tooltip.formatter = function (params) {
-        const { value, name, marker } = params;
-        let htmlStr = '<div>';
-        htmlStr += marker + name + '<br/>';
-        // 添加点
-        htmlStr += '占比：' + value + '%<br/>';
-        htmlStr += '</div>';
-        return htmlStr;
+      // 配置tootip(根据类型显示不同tooltip)
+      if (this.theme === 'primary') {
+        newOption.tooltip.formatter = function (params) {
+          const { value, name, marker } = params;
+          let htmlStr = '<div>';
+          htmlStr += marker + name + '<br/>';
+          // 添加点
+          htmlStr += '占比：' + value + '%<br/>';
+          htmlStr += '</div>';
+          return htmlStr;
+        }
+      } else {
+        let contentStr = ''
+        newOption.tooltip.formatter = (params) => {
+          if (Object.prototype.toString.call(params) === '[object Object]') {
+            const { percent, name, seriesName } = params;
+            contentStr = ` <div class="tips-content">
+                      ${seriesName}<br/>
+                      <div>${name}:<span class="value">${percent}%</span></div>
+                    </div>`;
+          } else if (Array.isArray(params)) {
+            contentStr = params.map(param => {
+              const { percent, seriesName } = param;
+              return ` <div class="tips-content">
+                      ${seriesName}<br/>
+                      <div>${name}:<span class="value">${percent}%</span></div>
+                    </div>`
+            }).join('');
+          }
+          return `<div class="tips-box">${contentStr}</div>`
+        }
       }
       // 配置legend
       newOption.legend.formatter = name => {

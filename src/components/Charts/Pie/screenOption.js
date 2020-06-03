@@ -33,15 +33,17 @@ export default {
     }
   },
   graphic: { // 图形中间文字(默认处理4字两行偏移)
-    type: 'text',
-    left: '27%',
-    top: '50%',
-    style: {
-      text: '',
-      fontSize: 14,
-      fill: '#E0E5EF',
-      textAlign: 'center'
-    }
+    elements: [{
+      type: 'text',
+      style: {
+        text: '',
+        fontSize: 14,
+        fill: '#E0E5EF',
+        textAlign: 'center'
+      },
+      left: 'center',
+      top: 'center'
+    }]
   },
   tooltip: {
     trigger: 'item',
@@ -50,7 +52,7 @@ export default {
   series: [
     {
       type: 'pie',
-      center: ['36%', '57%'],
+      center: ['50%', '50%'],
       label: {
         color: '#7892C8',
         formatter: (params) => {

@@ -35,8 +35,8 @@ body{
 .extra-wrapper{
     cursor: pointer;
     float: right;
-    
 }
+// 部分图表样式集
 .block-title {
     height: 40px;
     color: #fff;
@@ -48,4 +48,13 @@ body{
     width: 100%;
     height: 100%;
 }
+.tips-box{
+    padding:10px 20px;
+    background: url('../image/tooltipBg.png') no-repeat center center;
+    background-size: 100% 100%;
+    .value{
+      color:#3FC1E3;
+      margin-left: 7px;
+    }
+  }
 // elem 样式reset

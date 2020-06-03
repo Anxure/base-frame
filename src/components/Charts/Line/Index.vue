@@ -15,6 +15,10 @@ import defaultOption from './defaultOption'
 export default {
   name: 'LineChart',
   props: {
+    theme: {
+      type: String,
+      default: 'primary'
+    },
     loading: {
       type: Boolean,
       default: false
@@ -78,20 +82,15 @@ export default {
       const copyDefOption = cloneDeep(this.defaultOption);
       // 合并后进行处理
       const newOption = cloneDeep(merge(copyDefOption, this.option));
-      // 重置tooltip
-      newOption.tooltip.formatter = (params) => {
-        const contentStr = params.map(param => {
-          if (param.seriesName) {
+      if (this.theme === 'screen') {
+        newOption.tooltip.formatter = (params) => {
+          const contentStr = params.map(param => {
             return ` <div class="tips-content">
                       ${param.seriesName}:<span class="value">${param.value}</span>
                     </div>`
-          } else {
-            return ` <div class="tips-content">
-                      <span class="value">${param.value}</span>
-                    </div>`
-          }
-        }).join('');
-        return `<div class="tips-box">${contentStr}</div>`
+          }).join('');
+          return `<div class="tips-box">${contentStr}</div>`
+        }
       }
       // 处理横轴显示(这里不能放在默认配置,初始无法读取到数据)
       newOption.xAxis.axisLabel.formatter = function (params) {
