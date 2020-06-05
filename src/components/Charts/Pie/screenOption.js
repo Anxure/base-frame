@@ -1,4 +1,5 @@
 export default {
+  backgroundColor: 'rgba(0,0,0,0)',
   title: {
     x: 'center',
     show: false,
@@ -14,6 +15,8 @@ export default {
   legend: {
     orient: 'vertical',
     type: 'scroll',
+    itemWidth: 15,
+    itemHeight: 5,
     right: '0',
     top: '5%',
     textStyle: {
@@ -21,7 +24,7 @@ export default {
       rich: {
         percent: {
           color: '#7892C8',
-          width: 50
+          width: 26
         },
         value: {
           color: '#EAD305'
@@ -29,14 +32,13 @@ export default {
       }
     }
   },
-  // 也可以使用title设置（注意这里环形偏移的话，此方式无法居中 对应提问：https://github.com/apache/incubator-echarts/issues/11889）
   graphic: { // 图形中间文字(默认处理4字两行偏移)
     elements: [{
       type: 'text',
       style: {
         text: '',
         fontSize: 14,
-        fill: 'rgba(0,0,0,.65)',
+        fill: '#E0E5EF',
         textAlign: 'center'
       },
       left: 'center',
@@ -44,7 +46,8 @@ export default {
     }]
   },
   tooltip: {
-    trigger: 'item'
+    trigger: 'item',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   series: [
     {
@@ -62,7 +65,29 @@ export default {
         length: 0,
         show: false
       },
-      data: [],
+      data: [
+        {
+          itemStyle: {
+            normal: {
+              color: '#E9AE24'
+            }
+          }
+        },
+        {
+          itemStyle: {
+            normal: {
+              color: '#415AF8'
+            }
+          }
+        },
+        {
+          itemStyle: {
+            normal: {
+              color: '#3197E0'
+            }
+          }
+        }
+      ],
       radius: ['50%', '70%']
     }
   ]

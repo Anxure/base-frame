@@ -59,9 +59,13 @@ export default {
         case 'loginOut':
           this.logout();
           break;
-        case 'screen':
-          this.$router.push({ path: '/screenDataAls' });
+        // https://www.jianshu.com/p/c796266442b9 添加块级作用域
+        case 'screen': {
+          // 跳转新界面
+          const { href } = this.$router.resolve({ path: '/screenDataAls' });
+          window.open(href, '_blank');
           break;
+        }
       }
     },
     logout () {

@@ -107,7 +107,7 @@ export default {
     },
     height: {
       type: String,
-      default: '100px'
+      default: '100%'
     },
     sourceData: {
       type: Object,
@@ -163,6 +163,8 @@ export default {
   width: 95%;
   height:100%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
   .title {
     height: 45px;
     font-size: 21px;
