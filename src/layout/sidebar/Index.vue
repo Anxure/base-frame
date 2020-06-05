@@ -25,13 +25,14 @@
 
 <script>
 import { mapState } from 'vuex'
+import { config } from '@/config'
 import variables from '@/assets/style/variables.scss'
 import SidebarItem from './SidebarItem'
 import Logo from './Logo.vue'
 export default {
   data () {
     return {
-      menuStyle: 'dark'
+      menuStyle: config.menuStyle
     }
   },
   components: { Logo, SidebarItem },

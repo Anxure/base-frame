@@ -1,3 +1,3 @@
-export const congig =  {
-  WEB_TITLE='前端基础框架'
+export const config = {
+  menuStyle: 'dark'
 }
