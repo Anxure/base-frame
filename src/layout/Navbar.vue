@@ -107,7 +107,6 @@ export default {
             padding:0 15px;
             display: inline-block;
             height:60px;
-            float: left;
             cursor: pointer;
             transition: background .3s;
             &:hover{

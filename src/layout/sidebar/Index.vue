@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar-container " :class="[menuStyle === 'dark' ? 'dark' : 'light']"
+    <div class="sidebar-container " :class="[menuStyle]"
          :style="{'background-color' : variables[`${menuStyle}MenuBg`]}">
         <Logo :collapse="!open"/>
         <!--   左边菜单列表     -->
