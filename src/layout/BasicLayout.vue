@@ -9,10 +9,12 @@
                  :style="{ width:`calc(100% - ${sideBarWidth})`}">
                 <Navbar></Navbar>
             </div>
-            <div style="width:100%">
-                <div class="main-content-body">
-                <router-view></router-view>
-            </div>
+            <div style="width:100%;height:calc(100vh - 60px);">
+                <vue-scroll>
+                    <div class="main-content-body">
+                        <router-view></router-view>
+                    </div>
+                </vue-scroll>
             </div>
         </div>
     </div>
