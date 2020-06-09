@@ -6,7 +6,7 @@
 
 <script>
 import echarts from 'echarts'
-import chinaArea from '@/assets/chinaArea.json'
+import chinaArea from '@/components/Charts/chinaArea.json'
 const randomNum = (...args) => {
   const [minNum, maxNum] = args;
   switch (args.length) {

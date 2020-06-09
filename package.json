@@ -1,5 +1,5 @@
 {
-  "name": "vue-base-frame-js",
+  "name": "zdww-base-frame",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,7 @@
     "echarts": "^4.7.0",
     "echarts-liquidfill": "^2.0.5",
     "element-ui": "^2.13.1",
-    "normalize.css": "7.0.0",  
+    "normalize.css": "7.0.0",
     "nprogress": "^0.2.0",
     "numeral": "^2.0.6",
     "vue": "^2.6.11",
