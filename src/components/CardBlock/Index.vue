@@ -1,5 +1,5 @@
 <template>
-    <el-card class="chart-card-container">
+    <el-card class="chart-card-container" shadow="never">
         <div slot="header" v-if="hasHeader" class="clearfix">
             <slot name="header"></slot>
         </div>

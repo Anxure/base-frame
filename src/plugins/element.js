@@ -28,9 +28,6 @@ import {
   Breadcrumb,
   BreadcrumbItem
 } from 'element-ui'
-// 修改默认card不显示阴影(主要用于界面布局)
-Card.props.shadow.default = 'never';
-
 const elemComponets = [
   Button,
   Select,
