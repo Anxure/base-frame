@@ -58,3 +58,10 @@ body{
     }
   }
 // elem 样式reset
+//滚动条样式
+.scrollbar-wrapper{
+    height:calc(100vh - #{$navbar-height});
+}
+.el-scrollbar__wrap{
+    overflow-x: hidden; // 去除横向滚动条（不知道原因先这样处理）
+}

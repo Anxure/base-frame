@@ -1,5 +1,5 @@
  <template>
-  <div class="table-content" :key="'permission' + key">
+  <div class="table-content" style="width:100%;overflow:hidden" :key="'permission' + key">
     <div class="tabble-com">
       <el-radio-group v-model="radio" @change="changeRole">
         <el-radio label="admin">admin</el-radio>
@@ -10,7 +10,7 @@
     <div class="table-btn">
       <el-button size="small" type="primary" v-permission="['add','admin']">添加</el-button>
     </div>
-    <el-table :data="tableData" style="width: 100%" >
+    <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="date" label="日期" width="180">
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="180">

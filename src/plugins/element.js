@@ -23,7 +23,10 @@ import {
   TableColumn,
   Radio,
   RadioGroup,
-  RadioButton
+  RadioButton,
+  Scrollbar,
+  Breadcrumb,
+  BreadcrumbItem
 } from 'element-ui'
 // 修改默认card不显示阴影(主要用于界面布局)
 Card.props.shadow.default = 'never';
@@ -52,7 +55,10 @@ const elemComponets = [
   Table,
   TableColumn,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Scrollbar,
+  Breadcrumb,
+  BreadcrumbItem
 ];
 Vue.prototype.$confirm = MessageBox.confirm // 注册为全局方法
 Vue.prototype.$message = Message;

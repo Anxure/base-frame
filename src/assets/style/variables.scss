@@ -1,6 +1,6 @@
 //一些scss变量参数
 $normalBg : #f0f2f5;//界面背景色
-
+$navbar-height: 60px; // 顶部菜单高度
 $sideBarWidth : 210px;
 $colSideBarWidth : 62px;
 $base-margin: 24px; // 基准margin
@@ -38,5 +38,27 @@ $light-menu-text : #303133;
   lightMenuText : $light-menu-text;
   lightNavBarBg : $light-navbar-bg;
   lightMenuActiveColor : $light-menu-active-color;
-
+}
+// 样式表达式
+//背景图地址大小
+@mixin bis($url) { 
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+// 定义宽高
+@mixin wh($width, $height){
+  width: $width;
+  height: $height;
+}
+//字体大小，颜色
+@mixin sc($size, $color){
+	font-size: $size;
+	color: $color;
+}
+//flex 布局和 子元素 对其方式（默认两边对齐，垂直居中）
+@mixin fj($type: space-between,$vType:center){
+	display: flex;
+	justify-content: $type;
+	align-items: $vType;
 }

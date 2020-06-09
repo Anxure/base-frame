@@ -42,6 +42,11 @@ export default {
         opacity: 0;
     }
     .logo-wrapper{
+        transition: width 0.28s;
+        &.collapse{
+            width: $colSideBarWidth;
+        }
+        width: $sideBarWidth;
         box-sizing: border-box;
         height:60px;
         line-height: 60px;
