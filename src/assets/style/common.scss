@@ -65,3 +65,11 @@ body{
 .el-scrollbar__wrap{
     overflow-x: hidden; // 去除横向滚动条（不知道原因先这样处理）
 }
+.el-breadcrumb__inner{
+    color: $gray-text;
+}
+.el-breadcrumb__separator {
+    margin: 0 10px;
+    font-weight: 400;
+    color: $gray-text;
+}

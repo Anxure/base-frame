@@ -26,7 +26,8 @@ export const asyncRoutes = [
       {
         path: '/dashboard',
         name: 'Dashboard',
-        component: () => import('@/views/dashboard/Index.vue')
+        component: () => import('@/views/dashboard/Index.vue'),
+        meta: { hiddenBreadcrumb: true }
       },
       {
         path: '/permission',

@@ -6,9 +6,8 @@
         <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'partHeader'">
           <i :class="foldCls"></i>
         </div>
-       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+       <el-breadcrumb separator="/" v-show="isShowBread" style="margin-left:10px">
+        <el-breadcrumb-item v-for="item in breadcrumbData" :key="item.path">{{item.title}}</el-breadcrumb-item>
       </el-breadcrumb>
       </div>
       <div class="nav-right-content">
@@ -34,7 +33,9 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      curMeta: {}, // 当前路由预留信息段
+      matchedRoutes: [] // 匹配的路由项（会按照树级结构返回）
     };
   },
   components: { Logo },
@@ -52,9 +53,23 @@ export default {
     },
     logoOpen () {
       return this.globalConfig.layoutStyle === 'partHeader' ? !this.open : false;
+    },
+    breadcrumbData () {
+      const tempRoutes = this.matchedRoutes.map(route => {
+        const { meta } = route;
+        return { title: meta.title, path: route.path };
+      }).filter(r => !!r.path);
+      return tempRoutes || [];
+    },
+    // 是否显示面包屑（全局配置 openBreadcrumd, 当前路由 hiddenBreadcrumb）
+    isShowBread () {
+      return this.globalConfig.openBreadcrumd || !this.curMeta.hiddenBreadcrumb
     }
   },
-  created () {},
+  created () {
+    this.curMeta = this.$route.meta;
+    this.matchedRoutes = this.$route.matched;
+  },
   methods: {
     ...mapMutations(['TOGGLE_SIDERBAR']),
     ...mapActions(['loginOut']),
@@ -86,6 +101,12 @@ export default {
           res.code === 0 &&
           this.$router.push(`/login?redirect=${this.$route.fullPath}`);
       });
+    }
+  },
+  watch: {
+    $route () {
+      this.curMeta = this.$route.meta;
+      this.matchedRoutes = this.$route.matched;
     }
   }
 };
@@ -133,6 +154,9 @@ export default {
   .nav-right-wrapper{
     @include fj();
   }
+}
+.nav-left-content{
+  @include fj(flex-start);
 }
 .nav-right-content {
   .actions-item {
