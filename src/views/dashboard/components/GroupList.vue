@@ -277,7 +277,7 @@ export default {
 }
 .content-top,.content-bottom{
   width:100%;
-  margin: 5% auto;
+  margin: 2% auto;
   display: flex;
   height:40%;
   background-color: transparent;
