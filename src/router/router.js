@@ -63,11 +63,11 @@ export const asyncRoutes = [
             name: 'DynamicTableEdit',
             component: () => import('@/views/table/DynamicTableEdit.vue'),
             hidden: true,
-            meta: { title: '表格编辑', auth: ['admin'] }
+            meta: { title: '表格编辑' }
           }
         ]
       }
     ]
   },
-  { path: '*', redirect: '/404', hidden: true, meta: { auth: ['admin'] } }
+  { path: '*', redirect: '/404', hidden: true }
 ]
