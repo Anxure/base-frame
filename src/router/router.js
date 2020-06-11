@@ -59,11 +59,35 @@ export const asyncRoutes = [
             component: () => import('@/views/table/DynamicTable.vue')
           },
           {
-            path: '/table/dynamic-table/edit',
+            path: '/table/dynamic-table/add',
+            name: 'DynamicTableAdd',
+            component: () => import('@/views/table/DynamicTableAdd.vue'),
+            hidden: true,
+            meta: {
+              title: '新增',
+              auth: ['admin'],
+              breadcrumbs: [
+                { title: '表格模块', path: '/table' },
+                { title: '表格1', path: '/table/dynamic-table' },
+                { title: '新增', path: '/table/dynamic-table/add' }
+              ]
+            }
+          },
+          {
+            path: '/table/dynamic-table/edit/:id',
             name: 'DynamicTableEdit',
             component: () => import('@/views/table/DynamicTableEdit.vue'),
             hidden: true,
-            meta: { title: '表格编辑', auth: ['admin'] }
+            meta: {
+              title: '编辑',
+              auth: ['admin'],
+              // 这里需要树形结构，故自定义写结构
+              breadcrumbs: [
+                { title: '表格模块', path: '/table' },
+                { title: '表格1', path: '/table/dynamic-table' },
+                { title: '编辑', path: '/table/dynamic-table/edit' }
+              ]
+            }
           }
         ]
       }
