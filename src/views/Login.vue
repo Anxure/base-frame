@@ -110,6 +110,9 @@ export default {
       },
       immediate: true
     }
+  },
+  created () {
+    console.log(11111)
   }
 };
 </script>

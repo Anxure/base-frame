@@ -305,7 +305,7 @@ export default {
     .main-layout{
         color:#fff;
         height: 100%;
-        background: #001E49 url("../../assets/image/index-bg.png") no-repeat;
+        background: #001E49;
         background-size: 100% 100%;
         .header-wrapper{
           height:15vh;

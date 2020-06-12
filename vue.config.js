@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin// 打包文件分析
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 const openGzip = true // 是否开启gzip压缩
@@ -36,23 +36,11 @@ module.exports = {
   // 如果这个值是一个函数，则会接收被解析的配置作为参数。该函数及可以修改配置并不返回任何东西，也可以返回一个被克隆或合并过的配置版本。
   configureWebpack: config => {
     if (IS_PRODUCTION) {
-      Object.assign(config, {
-        plugins: [
-          ...config.plugins,
-          new UglifyJsPlugin({
-            uglifyOptions: {
-              output: {
-                comments: false
-              },
-              compress: {
-                pure_funcs: ['console.log'] // 移除console
-              }
-            },
-            sourceMap: false,
-            parallel: true
-          })
-        ]
-      })
+      config.optimization.minimizer.map((arg) => {
+        const option = arg.options.terserOptions.compress;
+        option.drop_console = true; // 打开开关
+        return arg;
+      });
       if (openGzip) {
         config.plugins = [
           ...config.plugins,
@@ -66,6 +54,8 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    // 解决入口文件大于244KB打包报警告的问题
+    config.performance.set('hints', false)
     // 添加文件别名
     config.resolve.alias.set('@', resolve('src'))
     // 是否开启打包分析

@@ -11,8 +11,8 @@ module.exports = {
     parser: 'babel-eslint'
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-console': 'off',
+    'no-debugger': 'off',
     'no-eq-null': 2, // 不允许对null用==或者!=
     'no-var': 2,
     'no-dupe-keys': 2, // 对象中不允许出现重复的键
