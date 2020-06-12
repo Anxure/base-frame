@@ -94,9 +94,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         // 向全局sass样式传入共享的全局变量
-        prependData: `
-        @import "@/assets/style/variables.scss";
-        `
+        prependData: '@import "@/assets/style/variables.scss";'
       },
       less: {
         javascriptEnabled: true
