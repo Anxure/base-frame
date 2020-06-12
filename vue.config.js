@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin// 打包文件分析
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 const openGzip = true // 是否开启gzip压缩
@@ -38,7 +38,7 @@ module.exports = {
     if (IS_PRODUCTION) {
       config.optimization.minimizer.map((arg) => {
         const option = arg.options.terserOptions.compress;
-        option.drop_console = true; // 打开开关
+        option.drop_console = true; // 移除console
         return arg;
       });
       if (openGzip) {
