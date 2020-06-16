@@ -63,10 +63,46 @@ const changeRole = (req, res) => {
     }
   });
 }
-
+const handSearch = (req, res) => {
+  const searchTxt = req.body.searchTxt;
+  res.json({
+    code: 0,
+    msg: '获取成功',
+    data: [{
+      date: '2016-05-02',
+      name: '王小虎',
+      province: '上海',
+      city: '普陀区',
+      address: searchTxt,
+      zip: 200333
+    }, {
+      date: '2016-05-04',
+      name: '王小虎',
+      province: '上海',
+      city: '普陀区',
+      address: searchTxt,
+      zip: 200333
+    }, {
+      date: '2016-05-01',
+      name: '王小虎',
+      province: '上海',
+      city: '普陀区',
+      address: searchTxt,
+      zip: 200333
+    }, {
+      date: '2016-05-03',
+      name: '王小虎',
+      province: '上海',
+      city: '普陀区',
+      address: searchTxt,
+      zip: 200333
+    }]
+  });
+}
 module.exports = [{
   'post|login': login,
   'post|getMenus': getMenus,
   'post|loginOut': loginOut,
-  'post|changeRole': changeRole
+  'post|changeRole': changeRole,
+  'post|handSearch': handSearch
 }];

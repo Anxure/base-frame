@@ -1,6 +1,5 @@
 const { resolve } = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-// const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin// 打包文件分析
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 const openGzip = true // 是否开启gzip压缩
