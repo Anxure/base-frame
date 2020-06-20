@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--动态组件写法-->
-    <a :href="to" v-if="isUrl">
+    <a :href="to" v-if="isUrl" target="_blank">
       <slot></slot>
     </a>
     <router-link :to="to" v-else>

@@ -54,7 +54,8 @@ export default {
     },
     {
       type: 'bar',
-      data: []
+      data: [],
+      animationDuration
     }
   ]
 }

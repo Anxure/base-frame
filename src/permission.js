@@ -51,8 +51,8 @@ export const filterAsyncRoutes = (asyncRoutes, resRoutes) => {
       tmp.meta = tempMeta;
       res.push(tmp);
     } else {
-      if (route.path === '/' || route.meta.auth.includes('admin')) {
-        // 首页 || auth 为admin    直接加入
+      if (route.path === '/' || (route.auth && route.auth.includes('guest'))) {
+        // 首页 || auth 包含guest    直接加入
         if (tmp.children) {
           tmp.children = filterAsyncRoutes(tmp.children, resRoutes);
         }

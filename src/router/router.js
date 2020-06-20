@@ -30,16 +30,17 @@ export const asyncRoutes = [
         meta: { hiddenBreadcrumb: true }
       },
       {
+        path: 'https://github.com/Anxure/zdww-base-frame',
+        name: 'Document',
+        auth: ['guest'],
+        meta: { title: '文档查看', icon: 'document' }
+      },
+      {
         path: '/permission',
         name: 'Permission',
         redirect: '/permission/page',
         component: () => import('@/layout/PageView.vue'),
         children: [
-          {
-            path: '/permission/page',
-            name: 'PagePermission',
-            component: () => import('@/views/permission/PagePermission.vue')
-          },
           {
             path: '/permission/directive',
             name: 'DirectPermission',
@@ -59,15 +60,52 @@ export const asyncRoutes = [
             component: () => import('@/views/table/DynamicTable.vue')
           },
           {
-            path: '/table/dynamic-table/edit',
+            path: '/table/dynamic-table/add',
+            name: 'DynamicTableAdd',
+            component: () => import('@/views/table/DynamicTableAdd.vue'),
+            hidden: true,
+            auth: ['guest'],
+            meta: {
+              title: '新增',
+              breadcrumbs: [
+                { title: '表格模块', path: '/table' },
+                { title: '表格1', path: '/table/dynamic-table' },
+                { title: '新增', path: '/table/dynamic-table/add' }
+              ]
+            }
+          },
+          {
+            path: '/table/dynamic-table/edit/:id',
             name: 'DynamicTableEdit',
             component: () => import('@/views/table/DynamicTableEdit.vue'),
             hidden: true,
-            meta: { title: '表格编辑' }
+            auth: ['guest'],
+            meta: {
+              title: '编辑',
+              // 这里需要树形结构，故自定义写结构
+              breadcrumbs: [
+                { title: '表格模块', path: '/table' },
+                { title: '表格1', path: '/table/dynamic-table' },
+                { title: '编辑', path: '@/views/table/DynamicTableEdit.vue' }
+              ]
+            }
+          },
+          {
+            path: '/table/menu-nest',
+            name: 'Table',
+            redirect: '/table/menu-nest/test-menu1',
+            component: () => import('@/layout/PageView.vue'),
+            children: [
+              {
+                path: '/table/menu-nest/test-menu1',
+                name: 'TestMenu1',
+                component: () => import('@/views/table/menuNest/TestMenu1.vue')
+              }
+            ]
           }
         ]
       }
     ]
   },
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404', hidden: true, auth: ['guest'] }
 ]

@@ -6,8 +6,13 @@
         <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'partHeader'">
           <i :class="foldCls"></i>
         </div>
-       <el-breadcrumb separator="/" v-show="isShowBread" style="margin-left:10px">
-        <el-breadcrumb-item v-for="item in breadcrumbData" :key="item.path">{{item.title}}</el-breadcrumb-item>
+       <el-breadcrumb separator="/" v-show="isShowBread" :style="breadcrumbStyle">
+        <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
+          <span v-if="index === breadcrumbData.length - 1">{{item.title}}</span>
+          <router-link :to="item.path" v-else>
+            {{item.title}}
+          </router-link>
+        </el-breadcrumb-item>
       </el-breadcrumb>
       </div>
       <div class="nav-right-content">
@@ -41,6 +46,10 @@ export default {
   components: { Logo },
   computed: {
     ...mapState(['userInfo', 'open', 'globalConfig']),
+    breadcrumbStyle () {
+      return this.globalConfig.layoutStyle === 'partHeader'
+        ? { marginLeft: '10px' } : { marginLeft: '22px' };
+    },
     foldCls () {
       return this.open ? 'el-icon-s-fold' : 'el-icon-s-unfold';
     },
@@ -55,11 +64,14 @@ export default {
       return this.globalConfig.layoutStyle === 'partHeader' ? !this.open : false;
     },
     breadcrumbData () {
-      const tempRoutes = this.matchedRoutes.map(route => {
-        const { meta } = route;
-        return { title: meta.title, path: route.path };
-      }).filter(r => !!r.path);
-      return tempRoutes || [];
+      if (this.matchedRoutes.some(item => !!item.meta)) {
+        const tempRoutes = this.matchedRoutes.map(route => {
+          const { meta } = route;
+          return { title: meta.title, path: route.path };
+        }).filter(r => !!r.path);
+        return tempRoutes || [];
+      }
+      return this.matchedRoutes;
     },
     // 是否显示面包屑（全局配置 openBreadcrumd, 当前路由 hiddenBreadcrumb）
     isShowBread () {
@@ -68,7 +80,7 @@ export default {
   },
   created () {
     this.curMeta = this.$route.meta;
-    this.matchedRoutes = this.$route.matched;
+    this.matchedRoutes = this.curMeta.breadcrumbs || this.$route.matched;
   },
   methods: {
     ...mapMutations(['TOGGLE_SIDERBAR']),
@@ -106,7 +118,7 @@ export default {
   watch: {
     $route () {
       this.curMeta = this.$route.meta;
-      this.matchedRoutes = this.$route.matched;
+      this.matchedRoutes = this.curMeta.breadcrumbs || this.$route.matched;
     }
   }
 };
