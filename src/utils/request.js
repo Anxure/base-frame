@@ -1,38 +1,53 @@
 import axios from 'axios'
 import { HTTP_CODE } from '@/config/dict'
+import { Message } from 'element-ui';
 const baseURL = process.env.VUE_APP_MOCK ? '/mock' : process.env.NODE_ENV === 'development' ? '/api' : process.env.VUE_APP_BASE_API
 const request = axios.create({
   timeout: 10000,
   baseURL,
   withCredentials: true
 });
+const requestUrl = [] // 针对防抖处理，同一个请求发起多次只触发第一次
 request.interceptors.request.use(
   (config) => {
-  // config.headers['token'] = sessionStorage.getItem('token') || ''
-  // Toast.loading({
-  //   message: '加载中...',
-  //   loadingType: 'spinner'
-  // });
-  // 在这里：可以根据业务需求可以在发送请求之前做些什么:例如我这个是导出文件的接口，因为返回的是二进制流，所以需要设置请求响应类型为blob，就可以在此处设置。
-  // if (config.url.includes('pur/contract/export')) {
-  //   config.headers['responseType'] = 'blob'
-  // }
-  // 我这里是文件上传，发送的是二进制流，所以需要设置请求头的'Content-Type'
-  // if (config.url.includes('pur/contract/upload')) {
-  //   config.headers['Content-Type'] = 'multipart/form-data'
-  // }
-  //
+    const hasUrl = requestUrl.some(item => item === config.url)
+    if (hasUrl) {
+      return false
+    } else {
+      requestUrl.push(config.url)
+    }
+    // config.headers['token'] = sessionStorage.getItem('token') || ''
+    // Toast.loading({
+    //   message: '加载中...',
+    //   loadingType: 'spinner'
+    // });
+    // 在这里：可以根据业务需求可以在发送请求之前做些什么:例如我这个是导出文件的接口，因为返回的是二进制流，所以需要设置请求响应类型为blob，就可以在此处设置。
+    // if (config.url.includes('pur/contract/export')) {
+    //   config.headers['responseType'] = 'blob'
+    // }
+    // 我这里是文件上传，发送的是二进制流，所以需要设置请求头的'Content-Type'
+    // if (config.url.includes('pur/contract/upload')) {
+    //   config.headers['Content-Type'] = 'multipart/form-data'
+    // }
+    //
     return config;
   },
   (err) => Promise.reject(err)
 );
 request.interceptors.response.use(
   response => {
+    const index = requestUrl.findIndex(item => item === response.config.url)
+    requestUrl.splice(index, 1)
+    console.log(requestUrl)
     if (response.data.code === 200 || response.data.code === 0) {
       // Toast.clear();
       return Promise.resolve(response.data || []);
     } else {
       // Toast.fail(response.data.msg);
+      Message({
+        message: response.data.msg,
+        type: 'error'
+      })
       return Promise.reject(response.data.msg);
     }
   },

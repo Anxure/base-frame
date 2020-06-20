@@ -1,9 +1,3 @@
-/*
- *@description:
- *@modifyContent:
- *@author: ykx
- *@date: 2020-05-14 16:39:05
-*/
 
 const TOKENKEY = 'Admin-Token';// token键
 
