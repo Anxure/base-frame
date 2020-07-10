@@ -35,11 +35,6 @@ module.exports = {
   // 如果这个值是一个函数，则会接收被解析的配置作为参数。该函数及可以修改配置并不返回任何东西，也可以返回一个被克隆或合并过的配置版本。
   configureWebpack: config => {
     if (IS_PRODUCTION) {
-      config.optimization.minimizer.map((arg) => {
-        const option = arg.options.terserOptions.compress;
-        option.drop_console = true; // 移除console
-        return arg;
-      });
       if (openGzip) {
         config.plugins = [
           ...config.plugins,
@@ -53,6 +48,12 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    // 移除项目中的console,debugger
+    config.optimization.minimizer('terser').tap(args => {
+      args[0].terserOptions.compress.drop_console = true
+      args[0].terserOptions.compress.drop_debugger = true
+      return args
+    })
     // 解决入口文件大于244KB打包报警告的问题
     config.performance.set('hints', false)
     // 添加文件别名
