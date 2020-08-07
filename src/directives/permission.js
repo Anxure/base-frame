@@ -6,7 +6,7 @@
 import Vue from 'vue'
 import { checkPermission } from '@/permission'
 export function initPermission () {
-  Vue.use((Vue) => {
+  Vue.use(Vue => {
     Vue.directive('permission', {
       inserted (el, binding) {
         if (!checkPermission(binding.value)) {

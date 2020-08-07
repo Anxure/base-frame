@@ -99,6 +99,7 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
+    progress: true,
     port: 8089, // 端口号
     https: false, // https:{type:Boolean}
     open: true, // 配置自动启动浏览器  open: 'Google Chrome'-默认启动谷歌

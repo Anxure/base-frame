@@ -19,6 +19,6 @@ export const HTTP_CODE = {
   505: 'HTTP版本不受支持'
 }
 export const SEX_STATUS = {
-  1: '男',
-  2: '女'
+  0: '男',
+  1: '女'
 }
