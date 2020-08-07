@@ -1,5 +1,4 @@
 export default {
-  backgroundColor: '#101736',
   color: ['#4A99FF', '#4BFFFC'],
   title: {
     show: false
