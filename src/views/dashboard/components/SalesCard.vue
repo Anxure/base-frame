@@ -1,11 +1,11 @@
-// 这里tab-panle 切换可能会造成图表渲染宽高不对，建议采用dom v-if 不使用 display 处理
+// 这里tab-panle 切换可能会造成图表渲染宽高不对，建议采用dom v-if
 <template>
           <card-block>
             <el-tabs v-model="active" @tab-click="handleClick">
-              <el-tab-pane label="销售额" name="sale">
+              <el-tab-pane label="销售额(柱状)" name="sale">
                 <el-row :gutter="20">
                   <el-col :span="16">
-                    <Bar :containerIsShow="active === 'sale'" :option="dataSalesSource" />
+                    <Bar v-if="active === 'sale'" :option="dataSalesSource" />
                   </el-col>
                   <el-col :span="8">
                     <div class="rank-wrapper">
@@ -25,10 +25,10 @@
                   </el-col>
                 </el-row>
               </el-tab-pane>
-              <el-tab-pane label="访问量" name="visited">
+              <el-tab-pane label="访问量(折线)" name="visited">
                  <el-row :gutter="20">
                   <el-col :span="16">
-                    <Bar :containerIsShow="active === 'visited'" :option="dataVisitedSource" />
+                    <line-chart v-if="active === 'visited'" :option="dataVisitedSource" />
                   </el-col>
                   <el-col :span="8">
                     <div class="rank-wrapper">
@@ -53,7 +53,7 @@
 </template>
 <script>
 import CardBlock from '@/components/CardBlock/Index.vue'
-import { Bar } from '@/components/Charts'
+import { Bar, LineChart } from '@/components/Charts'
 export default {
   name: 'Dashboard',
   data () {
@@ -101,12 +101,12 @@ export default {
         series: [
           {
             name: '第一季度',
-            type: 'bar',
+            type: 'line',
             data: [200, 400, 100, 800]
           },
           {
             name: '第二季度',
-            type: 'bar',
+            type: 'line',
             data: [204, 50, 560, 700]
           }
         ]
@@ -124,7 +124,8 @@ export default {
   },
   components: {
     CardBlock,
-    Bar
+    Bar,
+    LineChart
   },
   mounted () {
   },

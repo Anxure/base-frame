@@ -20,11 +20,6 @@ export default {
       type: String,
       default: 'primary'
     },
-    // 当存在tabs切换时使用(承载容器显示/隐藏)
-    containerIsShow: {
-      type: Boolean,
-      default: true
-    },
     loading: {
       type: Boolean,
       default: false
@@ -63,9 +58,7 @@ export default {
     }
   },
   mounted () {
-    if (this.containerIsShow) {
-      this.initChart();
-    }
+    this.initChart();
   },
   methods: {
     initChart () {

@@ -12,6 +12,7 @@
 import echarts from 'echarts'
 import { cloneDeep, merge } from 'lodash'
 import defaultOption from './defaultOption'
+import screenOption from './screenOption'
 export default {
   name: 'LineChart',
   props: {
@@ -33,7 +34,7 @@ export default {
     },
     height: {
       type: String,
-      default: '100%'
+      default: '300px'
     },
     option: {
       type: Object,
@@ -49,7 +50,7 @@ export default {
   components: { },
   computed: {
     chartH () {
-      let chartH = '100%';
+      let chartH = this.height;
       const { title } = this.option;
       if (title && title.text) {
         chartH = 'calc(100% - 45px)';
@@ -79,7 +80,7 @@ export default {
     },
     setOptions () {
       if (!this.$refs.chartNode) { return }
-      const copyDefOption = cloneDeep(this.defaultOption);
+      const copyDefOption = cloneDeep(this.theme === 'primary' ? defaultOption : screenOption);
       // 合并后进行处理
       const newOption = cloneDeep(merge(copyDefOption, this.option));
       if (this.theme === 'screen') {

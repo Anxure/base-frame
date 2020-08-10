@@ -35,7 +35,17 @@ const getMenus = (req, res) => {
         icon: 'date',
         title: '表格模块',
         children: [
-          { path: '/table/dynamic-table', title: '表格1' }
+          { path: '/table/dynamic-table', title: '表格1' },
+          {
+            path: '/table/menu-nest',
+            title: '嵌套菜单',
+            children: [
+              {
+                path: '/table/menu-nest/test-menu1',
+                title: '嵌套菜单1'
+              }
+            ]
+          }
         ]
       }
     ]

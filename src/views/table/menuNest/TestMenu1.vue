@@ -1,10 +1,10 @@
 <template>
-  <div>界面权限</div>
+  <div>嵌套菜单1</div>
 </template>
 
 <script>
 export default {
-  name: 'PagePermission',
+  name: 'TestMenu1',
   data () {
     return {
 

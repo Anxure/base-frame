@@ -6,7 +6,7 @@
         <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'partHeader'">
           <i :class="foldCls"></i>
         </div>
-       <el-breadcrumb separator="/" v-show="isShowBread" style="margin-left:10px">
+       <el-breadcrumb separator="/" v-show="isShowBread" :style="breadcrumbStyle">
         <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
           <span v-if="index === breadcrumbData.length - 1">{{item.title}}</span>
           <router-link :to="item.path" v-else>
@@ -46,6 +46,10 @@ export default {
   components: { Logo },
   computed: {
     ...mapState(['userInfo', 'open', 'globalConfig']),
+    breadcrumbStyle () {
+      return this.globalConfig.layoutStyle === 'partHeader'
+        ? { marginLeft: '10px' } : { marginLeft: '22px' };
+    },
     foldCls () {
       return this.open ? 'el-icon-s-fold' : 'el-icon-s-unfold';
     },
