@@ -1,9 +1,4 @@
-/**
- * fileName : index.js
- * author:ykx
- * date：2019/11/8 3:46
- * desc：统计表统一导出 注：Line 为关键字 在组件使用请使用别名 形如 LineChart
- */
+
 import Bar from './Bar/Index.vue'
 import Pie from './Pie/Index.vue'
 import Line from './Line/Index.vue'
