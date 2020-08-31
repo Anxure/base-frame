@@ -1,8 +1,3 @@
-/**
- * @Author: dww Chengdu r&d center
- * @Date: 2020-05-19 17:50:53
- * @desc 所有过滤器文件
- */
 import numeral from 'numeral'
 import { SEX_STATUS } from '@/config/dict'
 /**

@@ -1,8 +1,3 @@
-/**
- * @Author: zdww Chengdu r&d center
- * @Date: 2020-05-19 17:51:11
- * @Desc: 权限指令
- */
 import { checkPermission } from '@/permission'
 /**
  * 注册权限指令

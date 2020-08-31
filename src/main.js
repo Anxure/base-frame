@@ -18,8 +18,6 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 })
 Vue.use(authDirective)
-// initPermission()
-// 全局修改滚动条样式
 new Vue({
   router,
   store,
