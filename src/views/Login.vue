@@ -32,16 +32,16 @@
 import { mapActions, mapGetters } from 'vuex';
 const validateUsername = (rule, value, vCallback) => {
   if (!value) {
-    vCallback('请输入正确的用户名')
+    vCallback('请输入正确的用户名');
   } else {
     vCallback();
   }
 };
 const validatePassword = (rule, value, vCallback) => {
   if (value.length < 6) {
-    vCallback('密码不能少于6个字符')
+    vCallback('密码不能少于6个字符');
   } else {
-    vCallback()
+    vCallback();
   }
 };
 export default {
@@ -66,19 +66,30 @@ export default {
   methods: {
     ...mapActions(['login', 'generateRoutes']),
     handleLogin () {
-      this.$refs.loginForm.validate(async valid => {
+      this.$refs.loginForm.validate(async (valid) => {
         if (valid) {
           this.loading = true;
           try {
             const res = await this.login(this.formObj);
             console.log(res);
             if (res.code === 0 || res.code === 200) {
-              await this.generateRoutes();// 获取菜单列表
+              await this.generateRoutes(); // 获取菜单列表
               this.loading = false;
               console.log(this.transformedRoutes);
               if (this.transformedRoutes && this.transformedRoutes.length > 0) {
                 const { code, path } = this.transformedRoutes[0];
-                this.$router.push({ path: this.redirect || path, query: this.otherQuery || { code } })
+                this.$message({
+                  dangerouslyUseHTMLString: true,
+                  message:
+                    '<div><span style="color: rgb(64, 158, 255);margin-right:5px">' +
+                    res.data.name +
+                    '</span>,欢迎回来</div>',
+                  type: 'success'
+                });
+                this.$router.push({
+                  path: this.redirect || path,
+                  query: this.otherQuery || { code }
+                });
               }
             } else {
               this.loading = false;
@@ -96,7 +107,7 @@ export default {
           acc[cur] = query[cur];
         }
         return acc;
-      }, {})
+      }, {});
     }
   },
   watch: {
@@ -112,7 +123,7 @@ export default {
     }
   },
   created () {
-    console.log(11111)
+    console.log(11111);
   }
 };
 </script>

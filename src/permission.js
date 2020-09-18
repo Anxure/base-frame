@@ -8,7 +8,6 @@ import router from './router';
 import store from './store';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import { Message } from 'element-ui';
 import { getToken } from '@/utils';
 /**
  * 递归路由为一维数组
@@ -79,18 +78,6 @@ router.beforeEach(async (to, from, next) => {
         next({ path });
         NProgress.done();
       } else {
-        // 提示msg(放在这里最后一次跳转才提示，否则会有卡顿)
-        const userInfo = store.state.userInfo;
-        if (from.path === '/login') {
-          Message({
-            dangerouslyUseHTMLString: true,
-            message:
-            '<div><span style="color: rgb(64, 158, 255);margin-right:5px">' +
-            userInfo.name +
-            '</span>,欢迎回来</div>',
-            type: 'success'
-          });
-        }
         next();
       }
     } else {
