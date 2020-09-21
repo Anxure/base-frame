@@ -1,50 +1,50 @@
 <template>
   <div class="other-charts-container">
-    <el-row :gutter="20">
-      <el-col :span="12">
+    <Row :gutter="20">
+      <Col :span="12">
         <card-block :bodyH="300">
           <div slot="header">
             <span>六要素好评率分析</span>
             <span class="extra-wrapper">
-              <el-dropdown @command="handleCommand">
+              <Dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
-                  <i class="el-icon-more"></i>
+                  <Icon type="ios-more" :size="20"/>
                 </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="edit" icon="el-icon-edit-outline">编辑</el-dropdown-item>
-                  <el-dropdown-item command="refresh" icon="el-icon-refresh-right">刷新</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+                <DropdownMenu slot="list">
+                  <DropdownItem command="edit" icon="el-icon-edit-outline">编辑</DropdownItem>
+                  <DropdownItem command="refresh" icon="el-icon-refresh-right">刷新</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </span>
           </div>
           <group-list :data="sixElemData"></group-list>
         </card-block>
-      </el-col>
-      <el-col :span="12">
+      </Col>
+      <Col :span="12">
         <card-block :bodyH="300">
           <div slot="header">
             <span>销售额类别占比</span>
             <span class="extra-wrapper">
-              <el-radio-group v-model="source" size="small">
-                <el-radio-button label="1">全部渠道</el-radio-button>
-                <el-radio-button label="2">线上</el-radio-button>
-                <el-radio-button label="3">门店</el-radio-button>
-              </el-radio-group>
-              <el-dropdown @command="handleCommand">
+              <RadioGroup  v-model="source" type="button" size="small">
+                <Radio label="1">全部渠道</Radio>
+                <Radio label="2">线上</Radio>
+                <Radio label="3">门店</Radio>
+              </RadioGroup>
+              <Dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
-                  <i class="el-icon-more"></i>
+                  <Icon type="ios-more" :size="20"/>
                 </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="edit" icon="el-icon-edit-outline">编辑</el-dropdown-item>
-                  <el-dropdown-item command="refresh" icon="el-icon-refresh-right">刷新</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+                <DropdownMenu slot="list">
+                  <DropdownItem command="edit" icon="el-icon-edit-outline">编辑</DropdownItem>
+                  <DropdownItem command="refresh" icon="el-icon-refresh-right">刷新</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </span>
           </div>
           <Pie :option="saleCategroyOption" />
         </card-block>
-      </el-col>
-    </el-row>
+      </Col>
+    </Row>
   </div>
 </template>
 <script>

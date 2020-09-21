@@ -1,37 +1,32 @@
 <template>
-    <div class="sidebar-container " :class="[menuStyle]"
-         :style="{'background-color' : variables[`${menuStyle}MenuBg`]}">
-         <!-- 控制切换按钮 -->
-        <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'fullHeader'">
-            <i :class="foldCls"></i>
-        </div>
-        <!--   左边菜单列表   -->
-        <el-scrollbar class="scrollbar-wrapper">
-            <el-menu
-                    :default-active="activeMenu"
-                    :background-color="variables[`${menuStyle}MenuBg`]"
-                    :text-color="variables[`${menuStyle}MenuText`]"
-                    :active-text-color="variables[`${menuStyle}MenuActiveColor`]"
-                    :collapse-transition="false"
-                    :collapse="!open"
-            >
-                <SidebarItem
-                        v-for="route in currentMenuRoutes"
-                        :key="route.path"
-                        :item="route"
-                >
-                </SidebarItem>
-            </el-menu>
-        </el-scrollbar>
-    </div>
+<div class="sidebar-container " :class="[menuStyle]">
+  <!-- 控制切换按钮 -->
+  <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'fullHeader'">
+    <Icon :type="foldCls" />
+  </div>
+  <!--   左边菜单列表   -->
+  <Sider collapsible :collapsed-width="62" hide-trigger :value="!open" :width="variables.sideBarWidth">
+    <side-menu ref="sideMenu" @on-select="turnToPage" :menuList="currentMenuRoutes"></side-menu>
+  </Sider>
+</div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import {
+  mapState,
+  mapMutations
+} from 'vuex'
+import SideMenu from './SideMenu'
 import variables from '@/assets/style/variables.scss'
-import SidebarItem from './SidebarItem'
 export default {
-  components: { SidebarItem },
+  components: {
+    SideMenu
+  },
+  data () {
+    return {
+      isCollapsed: false
+    }
+  },
   computed: {
     ...mapState(['open', 'addRoutes', 'globalConfig']),
     menuStyle () {
@@ -50,67 +45,81 @@ export default {
       return this.$route.path;
     },
     foldCls () {
-      return this.open ? 'el-icon-arrow-left' : 'el-icon-arrow-right';
+      return this.open ? 'md-arrow-dropleft' : 'md-arrow-dropright';
     }
   },
   methods: {
     ...mapMutations(['TOGGLE_SIDERBAR']),
+    turnToPage () {},
     toggleSideMenu () {
+      // this.isCollapsed = !this.isCollapsed
       this.TOGGLE_SIDERBAR();
     }
   }
 }
 </script>
+
 <style lang="scss">
-    .sidebar-container{
-        box-shadow: 2px 0 8px 0 rgba(29,35,41,.05);
-        .el-menu-item {
-            width:auto;
-        }
-        //这里未提供相关props，采用样式覆盖了
-        &.light{
-            .logo-wrapper{
-                background: #fff;
-                margin-bottom: 1px;
-                box-shadow: 1px 1px 0 0 #e8e8e8;
-                h1.sidebar-title{
-                    color:#409EFF;
-                }
-            }
-            border-right: 1px solid #e8e8e8;
-            .el-submenu__title:focus,.el-submenu__title:hover,
-            .el-menu-item:focus, .el-menu-item:hover {
-                outline: none;
-                background-color: #ecf5ff !important;
-            }
-        }
-        .el-menu{
-            border: none;//去除右边框
-            a{
-                display: inline-block;
-                width:100%;
-            }
-        }
+.sidebar-container {
+  box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
+
+  .el-menu-item {
+    width: auto;
+  }
+
+  //这里未提供相关props，采用样式覆盖了
+  &.light {
+    .logo-wrapper {
+      background: #fff;
+      margin-bottom: 1px;
+      box-shadow: 1px 1px 0 0 #e8e8e8;
+
+      h1.sidebar-title {
+        color: #409EFF;
+      }
     }
+
+    border-right: 1px solid #e8e8e8;
+
+    .el-submenu__title:focus,
+    .el-submenu__title:hover,
+    .el-menu-item:focus,
+    .el-menu-item:hover {
+      outline: none;
+      background-color: #ecf5ff !important;
+    }
+  }
+
+  .el-menu {
+    border: none; //去除右边框
+
+    a {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
 </style>
 <style lang="scss" scoped>
-    .sidebar-container{
-        transition: width 0.28s;
-        width:210px;
-        position: relative;
-        .side-menu-switch{
-            color:#fff;
-            background-color: $dark-menu-bg;
-            position: absolute;
-            top:50%;
-            right:-15px;
-            padding:10px 5px;
-            padding-right:0px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-    }
-    .scrollbar-wrapper{
-        overflow-x: hidden !important;
-    }
+.sidebar-container {
+  transition: width 0.28s;
+  width: 210px;
+  position: relative;
+
+  .side-menu-switch {
+    color: #fff;
+    background-color: $dark-menu-bg;
+    position: absolute;
+    top: 50%;
+    right: -15px;
+    padding: 10px 5px;
+    padding-right: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+}
+
+.scrollbar-wrapper {
+  overflow-x: hidden !important;
+}
 </style>

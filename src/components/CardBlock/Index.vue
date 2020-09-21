@@ -1,6 +1,6 @@
 <template>
-    <el-card class="chart-card-container" shadow="never">
-        <div slot="header" v-if="hasHeader" class="clearfix">
+    <Card class="chart-card-container">
+        <div slot="title" v-if="hasHeader" class="clearfix">
             <slot name="header"></slot>
         </div>
         <div :style="{height: typeof bodyH === 'string' ? bodyH : bodyH + 'px'}">
@@ -9,7 +9,7 @@
         <div class="footer-wrapper">
             <slot name="footer"></slot>
         </div>
-    </el-card>
+    </Card>
 </template>
 
 <script>

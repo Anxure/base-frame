@@ -20,10 +20,10 @@ const getMenus = (req, res) => {
     code: 0,
     msg: '获取菜单成功',
     data: [
-      { path: '/dashboard', icon: 's-data', title: '看板模块' },
+      { path: '/dashboard', icon: 'ios-stats', title: '看板模块'},
       {
         path: '/permission',
-        icon: 'lock',
+        icon: 'ios-lock',
         title: '权限模块',
         children: [
           { path: '/permission/page', title: '界面查看' },
@@ -32,7 +32,7 @@ const getMenus = (req, res) => {
       },
       {
         path: '/table',
-        icon: 'date',
+        icon: 'md-grid',
         title: '表格模块',
         children: [
           { path: '/table/dynamic-table', title: '表格1' },

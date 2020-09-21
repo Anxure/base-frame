@@ -2,7 +2,7 @@
     <div class="trend-wrapper">
         <span>
             <slot></slot>
-            <i :class="['trend-icon',flag === 'up' ? 'el-icon-caret-top' : 'el-icon-caret-bottom']"></i>
+            <Icon class="trend-icon" :type="flag === 'up' ? 'md-arrow-dropup' : 'md-arrow-dropdown'" :size="18"></Icon>
         </span>
     </div>
 </template>
@@ -28,10 +28,10 @@ export default {
         .trend-icon{
             margin-left: 5px;
         }
-        i.el-icon-caret-top{
+        i.ivu-icon-md-arrow-dropup{
             color:#f5222d;
         }
-        i.el-icon-caret-bottom{
+        i.ivu-icon-md-arrow-dropdown{
             color:#52c41a;
         }
     }

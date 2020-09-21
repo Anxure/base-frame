@@ -1,37 +1,42 @@
 <template>
-  <div class="nav-wrapper">
-    <Logo :collapse="logoOpen"/>
-    <div class="nav-right-wrapper">
-      <div class="nav-left-content">
-        <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'partHeader'">
-          <i :class="foldCls"></i>
-        </div>
-       <el-breadcrumb separator="/" v-show="isShowBread" :style="breadcrumbStyle">
-        <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
+<div class="nav-wrapper">
+  <Logo :collapse="logoOpen" />
+  <div class="nav-right-wrapper">
+    <div class="nav-left-content">
+      <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'partHeader'">
+        <Icon type="md-menu" :class="rotateIcon" />
+      </div>
+      <Breadcrumb separator="/" v-show="isShowBread" :style="breadcrumbStyle">
+        <BreadcrumbItem v-for="(item, index) in breadcrumbData" :key="item.path">
           <span v-if="index === breadcrumbData.length - 1">{{item.title}}</span>
           <router-link :to="item.path" v-else>
             {{item.title}}
           </router-link>
-        </el-breadcrumb-item>
-      </el-breadcrumb>
-      </div>
-      <div class="nav-right-content">
-        <el-dropdown class="actions-item" @command="handleCommand">
-          <div class="action-trigger">
-            <img :src="userInfo.avatar" class="avatar" alt />
-            <span class="user-name">{{userInfo.name}}</span>
-          </div>
-          <el-dropdown-menu>
-            <el-dropdown-item command="screen">大屏展示</el-dropdown-item>
-            <el-dropdown-item command="loginOut">退出登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    </div>
+    <div class="nav-right-content">
+      <Dropdown class="actions-item" @on-click="handleCommand">
+        <div class="action-trigger">
+          <img :src="userInfo.avatar" class="avatar" alt />
+          <span class="user-name">{{userInfo.name}}</span>
+        </div>
+        <DropdownMenu slot="list" trigger="click">
+          <DropdownItem name="screen">大屏展示</DropdownItem>
+          <DropdownItem name="loginOut">退出登录</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </div>
   </div>
+</div>
 </template>
+
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex';
+import {
+  mapState,
+  mapMutations,
+  mapActions
+} from 'vuex';
 import Logo from './Logo.vue';
 import variables from '@/assets/style/variables.scss';
 export default {
@@ -43,15 +48,23 @@ export default {
       matchedRoutes: [] // 匹配的路由项（会按照树级结构返回）
     };
   },
-  components: { Logo },
+  components: {
+    Logo
+  },
   computed: {
     ...mapState(['userInfo', 'open', 'globalConfig']),
     breadcrumbStyle () {
-      return this.globalConfig.layoutStyle === 'partHeader'
-        ? { marginLeft: '10px' } : { marginLeft: '22px' };
+      return this.globalConfig.layoutStyle === 'partHeader' ? {
+        marginLeft: '10px'
+      } : {
+        marginLeft: '22px'
+      };
     },
-    foldCls () {
-      return this.open ? 'el-icon-s-fold' : 'el-icon-s-unfold';
+    rotateIcon () {
+      return [
+        'menu-icon',
+        this.open ? '' : 'rotate-icon'
+      ];
     },
     foldText () {
       return `点击${this.open ? '收起' : '展开'}`;
@@ -66,8 +79,13 @@ export default {
     breadcrumbData () {
       if (this.matchedRoutes.some(item => !!item.meta)) {
         const tempRoutes = this.matchedRoutes.map(route => {
-          const { meta } = route;
-          return { title: meta.title, path: route.path };
+          const {
+            meta
+          } = route;
+          return {
+            title: meta.title,
+            path: route.path
+          };
         }).filter(r => !!r.path);
         return tempRoutes || [];
       }
@@ -93,26 +111,28 @@ export default {
         case 'loginOut':
           this.logout();
           break;
-        // https://www.jianshu.com/p/c796266442b9 添加块级作用域
+          // https://www.jianshu.com/p/c796266442b9 添加块级作用域
         case 'screen': {
           // 跳转新界面
-          const { href } = this.$router.resolve({ path: '/screenDataAls' });
+          const {
+            href
+          } = this.$router.resolve({
+            path: '/screenDataAls'
+          });
           window.open(href, '_blank');
           break;
         }
       }
     },
     logout () {
-      this.$confirm('是否退出登录？', '系统提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(async () => {
-        const res = await this.loginOut();
-        res &&
-          res.code === 0 &&
-          this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-      });
+      this.$Modal.confirm({
+        title: '系统提示',
+        content: '是否退出登录？',
+        onOk: async () => {
+          const res = await this.loginOut();
+          res && res.code === 0 && this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+        }
+      })
     }
   },
   watch: {
@@ -123,31 +143,41 @@ export default {
   }
 };
 </script>
+
 <style lang="scss">
 .nav-wrapper {
   position: relative;
   display: flex;
-  .el-menu {
-    padding-left: 20px;
-    float: left;
-  }
-  .el-menu-item {
-    text-align: center;
-  }
-  .el-menu.el-menu--horizontal {
-    border-bottom: none;
-  }
-  .nav-right-wrapper{
-    flex:1;
+
+  // .el-menu {
+  //   padding-left: 20px;
+  //   float: left;
+  // }
+
+  // .el-menu-item {
+  //   text-align: center;
+  // }
+
+  // .el-menu.el-menu--horizontal {
+  //   border-bottom: none;
+  // }
+
+  .nav-right-wrapper {
+    flex: 1;
     box-shadow: 2px 2px 5px #f0f1f2; //水平向右边偏移
     width: calc(100% - #{$sideBarWidth}); // calc变量使用插值
   }
 }
 </style>
 <style lang="scss" scoped>
+.rotate-icon {
+  transform: rotate(-90deg);
+}
+
 .nav-wrapper {
   height: 60px;
   line-height: 60px;
+
   .side-menu-switch {
     width: 25px;
     padding: 0 15px;
@@ -155,32 +185,40 @@ export default {
     height: 60px;
     cursor: pointer;
     transition: background 0.3s;
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.025);
     }
+
     i {
       font-size: 25px;
       line-height: 60px; //父级无效...
     }
   }
-  .nav-right-wrapper{
+
+  .nav-right-wrapper {
     @include fj();
   }
 }
-.nav-left-content{
+
+.nav-left-content {
   @include fj(flex-start);
 }
+
 .nav-right-content {
   .actions-item {
     text-align: center;
     transition: background-color 0.3s;
     background-color: #fff;
     padding: 0 12px;
+
     &:hover {
       background: rgba(0, 0, 0, 0.025);
     }
+
     .action-trigger {
       cursor: pointer;
+
       &.language {
         transform: scale(1.3); //这里fontsize 回影响左边高度（line-height?）
 
@@ -189,10 +227,12 @@ export default {
         }
       }
     }
+
     &:last-child {
       margin-right: 0;
     }
   }
+
   .avatar {
     width: 40px;
     height: 40px;
@@ -201,6 +241,7 @@ export default {
     margin-right: 15px;
   }
 }
+
 .el-dropdown-menu__item.selected {
   background-color: #ecf5ff;
   color: #66b1ff;

@@ -1,14 +1,15 @@
 <template>
-  <div class="analysis-container">
-    <top-card-info></top-card-info>
-    <div class="info-divider">
-      <sales-card></sales-card>
-    </div>
-    <div class="info-divider">
-      <other-charts></other-charts>
-    </div>
+<div class="analysis-container">
+  <top-card-info></top-card-info>
+  <div class="info-divider">
+    <sales-card></sales-card>
   </div>
+  <div class="info-divider">
+    <other-charts></other-charts>
+  </div>
+</div>
 </template>
+
 <script>
 import TopCardInfo from './components/TopCardInfo'
 import SalesCard from './components/SalesCard'
@@ -16,16 +17,14 @@ import OtherCharts from './components/OtherCharts'
 export default {
   name: 'Dashboard',
   data () {
-    return {
-    }
+    return {}
   },
   components: {
     TopCardInfo,
     SalesCard,
     OtherCharts
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 
@@ -35,21 +34,25 @@ export default {
     float: right;
     cursor: pointer;
   }
+
   .info-divider {
     margin-top: $base-margin;
   }
+
   .rank-wrapper {
     li {
       height: $base-height;
       line-height: $base-height;
       display: flex;
       justify-content: space-between;
+
       &.active {
         i {
           color: #fff;
           background-color: #314659;
         }
       }
+
       i {
         line-height: 20px;
         text-align: center;

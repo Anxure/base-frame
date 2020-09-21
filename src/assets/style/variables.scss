@@ -11,7 +11,7 @@ $base-height: 30px; // 记住行高
 $gray-text: #999;
 //深色sidebar
 
-$dark-menu-bg:#304156;
+$dark-menu-bg:#515A6E;
 $dark-navbar-bg:#2b2f3a;
 $dark-menu-active-color : #409EFF;
 $dark-menu-text : #bfcbd9;
@@ -41,7 +41,7 @@ $light-menu-text : #303133;
 }
 // 样式表达式
 //背景图地址大小
-@mixin bis($url) { 
+@mixin bis($url) {
 	background-image: url($url);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;

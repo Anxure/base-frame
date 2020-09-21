@@ -58,19 +58,23 @@ body{
       margin-left: 7px;
     }
   }
-// elem 样式reset
-//滚动条样式
-.scrollbar-wrapper{
-    height:calc(100vh - #{$navbar-height});
-}
-.el-scrollbar__wrap{
-    overflow-x: hidden; // 去除横向滚动条（不知道原因先这样处理）
-}
-.el-breadcrumb__inner{
-    color: $gray-text;
-}
-.el-breadcrumb__separator {
-    margin: 0 10px;
-    font-weight: 400;
-    color: $gray-text;
-}
+/*滚动条美化*/
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+  }
+  *::-webkit-scrollbar-track {
+    background-color:#F1F1F1;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius:2em;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #d8d9da;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius:2em;
+  }
+  .ivu-dropdown{
+    max-width: 100%;
+  }

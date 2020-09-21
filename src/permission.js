@@ -8,8 +8,9 @@ import router from './router';
 import store from './store';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import { Message } from 'element-ui';
+import { Message } from 'view-design';
 import { getToken } from '@/utils';
+console.log(Message)
 /**
  * 递归路由为一维数组
  * @param {Array} resRouter - 后端 | 本地 返回路由树
@@ -82,14 +83,7 @@ router.beforeEach(async (to, from, next) => {
         // 提示msg(放在这里最后一次跳转才提示，否则会有卡顿)
         const userInfo = store.state.userInfo;
         if (from.path === '/login') {
-          Message({
-            dangerouslyUseHTMLString: true,
-            message:
-            '<div><span style="color: rgb(64, 158, 255);margin-right:5px">' +
-            userInfo.name +
-            '</span>,欢迎回来</div>',
-            type: 'success'
-          });
+          Message.success(`${userInfo.name},欢迎回来`)
         }
         next();
       }

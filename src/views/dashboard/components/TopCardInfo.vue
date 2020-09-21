@@ -1,12 +1,12 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :span="6">
+  <Row :gutter="20">
+    <Col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>总销售额</span>
-          <el-tooltip effect="dark" content="介绍" placement="top">
-            <i class="el-icon-warning-outline card-title-icon"></i>
-          </el-tooltip>
+          <Tooltip  theme="dark" content="介绍" placement="top">
+            <Icon type="ios-information-circle-outline" :size="18"/>
+          </Tooltip>
         </div>
         <div>
           <p class="total">{{200000 | toThousandFilter('¥')}}</p>
@@ -30,14 +30,14 @@
           </p>
         </div>
       </CardBlock>
-    </el-col>
-    <el-col :span="6">
+    </Col>
+    <Col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>日访问量</span>
-          <el-tooltip effect="dark" content="介绍" placement="top">
-            <i class="el-icon-warning-outline card-title-icon"></i>
-          </el-tooltip>
+            <Tooltip  theme="dark" content="介绍" placement="top">
+            <Icon type="ios-information-circle-outline" :size="18"/>
+          </Tooltip>
         </div>
         <div>
           <p class="total">{{200000 | toThousandFilter()}}</p>
@@ -52,14 +52,14 @@
           </p>
         </div>
       </CardBlock>
-    </el-col>
-    <el-col :span="6">
+    </Col>
+    <Col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>支付笔数</span>
-          <el-tooltip effect="dark" content="介绍" placement="top">
-            <i class="el-icon-warning-outline card-title-icon"></i>
-          </el-tooltip>
+         <Tooltip  theme="dark" content="介绍" placement="top">
+            <Icon type="ios-information-circle-outline" :size="18"/>
+          </Tooltip>
         </div>
         <div>
           <p class="total">{{200000 | toThousandFilter()}}</p>
@@ -74,14 +74,14 @@
           </p>
         </div>
       </CardBlock>
-    </el-col>
-    <el-col :span="6">
+    </Col>
+    <Col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>运营活动效果</span>
-          <el-tooltip effect="dark" content="介绍" placement="top">
-            <i class="el-icon-warning-outline card-title-icon"></i>
-          </el-tooltip>
+          <Tooltip  theme="dark" content="介绍" placement="top">
+            <Icon type="ios-information-circle-outline" :size="18"/>
+          </Tooltip>
         </div>
         <div>
           <p class="total">70%</p>
@@ -104,8 +104,8 @@
           </div>
         </div>
       </CardBlock>
-    </el-col>
-  </el-row>
+    </Col>
+  </Row>
 </template>
 
 <script>

@@ -7,7 +7,7 @@
  **/
 export default {
   menuStyle: 'dark',
-  layoutStyle: 'partHeader',
+  layoutStyle: 'fullHeader',
   openBreadcrumd: true,
   authByRole: false
 }
