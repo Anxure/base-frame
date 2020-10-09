@@ -24,7 +24,7 @@ import {
 } from 'vuex'
 import Navbar from './navbar/Index.vue'
 import Sidebar from './sidebar/Index.vue'
-import variables from '@/assets/style/variables.scss'
+import variables from '@/assets/style/variables.less'
 export default {
   name: 'index',
   data () {
@@ -54,12 +54,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 /*收起隐藏*/
 .basicLayout.hideSidebar {
   .sidebar-container {
     .el-menu--collapse {
-      width: $colSideBarWidth;
+      width: @colSideBarWidth;
     }
 
     .el-submenu,
@@ -73,9 +73,7 @@ export default {
     }
   }
 }
-</style><style lang="scss" scoped>
-@import "../assets/style/variables.scss";
-
+</style><style lang="less" scoped>
 .global-header {
   background-color: #fff;
   transition: width 0.28s;
@@ -100,25 +98,25 @@ export default {
 
     &.fixed {
       position: fixed;
-      top: $navbar-height;
+      top: @navbar-height;
       bottom: 0;
       left: 0;
     }
   }
 
   .main-content {
-    background-color: $normalBg;
+    background-color: @normalBg;
     transition: margin-left 0.28s;
     min-height: calc(100vh - 60px);
 
     .main-content-body {
-      padding: $base-margin;
+      padding: @base-margin;
     }
   }
 
   &.hideSidebar {
     .sidebar-container {
-      width: $colSideBarWidth;
+      width: @colSideBarWidth;
     }
 
     .main-content {

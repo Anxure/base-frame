@@ -84,7 +84,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .input-with-search {
   width: 300px;
   float: right;

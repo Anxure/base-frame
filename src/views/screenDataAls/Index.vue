@@ -295,7 +295,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .full-block{
   height:100%
 }

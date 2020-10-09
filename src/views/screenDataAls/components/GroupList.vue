@@ -270,7 +270,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .group-content{
   margin: 0 auto;
   height:100%;

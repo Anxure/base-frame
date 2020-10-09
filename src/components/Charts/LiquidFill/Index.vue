@@ -158,7 +158,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .gropu-content {
   width: 95%;
   height:100%;

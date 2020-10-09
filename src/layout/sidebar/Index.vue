@@ -35,7 +35,7 @@ import {
 import SideMenu from './SideMenu'
 import CollapsedMenu from './CollapsedMenu'
 import AppLink from './Link'
-import variables from '@/assets/style/variables.scss'
+import variables from '@/assets/style/variables.less'
 import mixin from './mixin'
 export default {
   mixins: [mixin],
@@ -102,13 +102,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 .sidebar-container {
   box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
 
 }
 </style>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .sidebar-container {
   transition: width 0.28s;
   width: 210px;
@@ -116,7 +116,7 @@ export default {
 
   .side-menu-switch {
     color: #fff;
-    background-color: $dark-menu-bg;
+    background-color: @dark-menu-bg;
     position: absolute;
     top: 50%;
     right: -15px;

@@ -125,7 +125,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
 .login-container {
   .el-form-item {
     position: relative;
@@ -137,7 +137,7 @@ export default {
     }
   }
 }
-</style><style lang="scss" scoped>
+</style><style lang="less" scoped>
 .login-container {
   display: flex;
   flex-direction: column;

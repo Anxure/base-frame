@@ -4,7 +4,17 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 const openGzip = false // 是否开启gzip压缩
 const IS_ANALYZ = true // 是否开启打包分析
-const productionGzipExtensions = ['js', 'css', 'json', 'txt', 'html', 'ico', 'svg']
+const productionGzipExtensions = ['js', 'css', 'json', 'txt', 'html', 'ico', 'svg'];
+const path = require('path');
+function addStyleResource (rule) {
+  rule
+    .use('style-resource')
+    .loader('style-resources-loader')
+    .options({
+      patterns: [path.resolve(__dirname, './src/assets/style/variables.less')]
+    });
+}
+
 module.exports = {
   // 项目部署的基本路径
   // 默认假设你的应用将会部署在域名的根部
@@ -48,6 +58,10 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
+    types.forEach(type =>
+      addStyleResource(config.module.rule('less').oneOf(type))
+    );
     // 移除项目中的console,debugger
     config.optimization.minimizer('terser').tap(args => {
       args[0].terserOptions.compress.drop_console = true
@@ -108,12 +122,10 @@ module.exports = {
     extract: IS_PRODUCTION,
     sourceMap: false,
     loaderOptions: {
-      sass: {
-        // 向全局sass样式传入共享的全局变量
-        prependData: '@import "@/assets/style/variables.scss";'
-      },
       less: {
-        javascriptEnabled: true
+        lessOptions: {
+          javascriptEnabled: true
+        }
       }
       // rem转换 不需要的可以注释
       // postcss: {

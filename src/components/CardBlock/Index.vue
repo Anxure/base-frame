@@ -32,6 +32,6 @@ export default {
 }
 </script>
 <!--scoped下 子组件无法影响 slot 样式-->
-<style lang="scss">
+<style lang="less">
 
 </style>

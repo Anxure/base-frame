@@ -18,7 +18,7 @@
 import {
   mapState
 } from 'vuex'
-import variables from '@/assets/style/variables.scss'
+import variables from '@/assets/style/variables.less'
 export default {
   data () {
     return {
@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 //查看过度文档
 .sidebarLogoFade-enter-active {
   transition: opacity 1.5s;
@@ -59,10 +59,10 @@ export default {
   transition: width 0.28s;
 
   &.collapse {
-    width: $colSideBarWidth;
+    width: @colSideBarWidth;
   }
 
-  width: $sideBarWidth;
+  width: @sideBarWidth;
   box-sizing: border-box;
   height:60px;
   line-height: 60px;

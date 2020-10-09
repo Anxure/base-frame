@@ -1,0 +1,64 @@
+//一些scss变量参数
+@normalBg : #f0f2f5;//界面背景色
+@navbar-height: 60px; // 顶部菜单高度
+@sideBarWidth : 210px;
+@colSideBarWidth : 62px;
+@base-margin: 24px; // 基准margin
+@small-margin: 10px; // 分隔margin
+@base-padding: 20px;
+@small-padding: 10px;
+@base-height: 30px; // 记住行高
+@gray-text: #999;
+//深色sidebar
+
+@dark-menu-bg:#515A6E;
+@dark-navbar-bg:#2b2f3a;
+@dark-menu-active-color : #409EFF;
+@dark-menu-text : #bfcbd9;
+
+//浅色sidebar
+
+@light-menu-bg:#fff;
+@light-navbar-bg:#2b2f3a;
+@light-menu-active-color : #409EFF;
+@light-menu-text : #303133;
+
+:export{
+  sideBarWidth : @sideBarWidth;
+  colSideBarWidth : @colSideBarWidth;
+
+
+  darkMenuBg: @dark-menu-bg;
+  darkMenuText : @dark-menu-text;
+  darkNavBarBg : @dark-navbar-bg;
+  darkMenuActiveColor : @dark-menu-active-color;
+
+
+  lightMenuBg: @light-menu-bg;
+  lightMenuText : @light-menu-text;
+  lightNavBarBg : @light-navbar-bg;
+  lightMenuActiveColor : @light-menu-active-color;
+}
+// 样式表达式
+//背景图地址大小
+.bis(@url) {
+	background-image: url(@url);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+// 定义宽高
+.wh(@width, @height){
+  width: @width;
+  height: @height;
+}
+//字体大小，颜色
+.sc(@size, @color){
+	font-size: @size;
+	color: @color;
+}
+//flex 布局和 子元素 对其方式（默认两边对齐，垂直居中）
+.fj(@type: space-between,@vType:center){
+	display: flex;
+	justify-content: @type;
+	align-items: @vType;
+}

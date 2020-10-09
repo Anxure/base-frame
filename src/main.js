@@ -5,8 +5,9 @@ import './permission' // permission control
 import store from './store'
 import * as filters from '@/filters'
 import 'view-design/dist/styles/iview.css';
-import '@/assets/style/common.scss'
-import '@/assets/style/side-menu.scss'
+import '@/assets/style/theme.less';
+import '@/assets/style/common.less'
+import '@/assets/style/side-menu.less'
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 import '@/assets/font/iconfont.css'
 import ViewUI from 'view-design';

@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .trend-wrapper{
         display: inline-block;
         &:not(last-child){

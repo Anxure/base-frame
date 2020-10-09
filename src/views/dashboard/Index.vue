@@ -28,7 +28,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import '~@/assets/style/variables.less';
+
 .analysis-container {
   .card-title-icon {
     float: right;
@@ -36,13 +38,13 @@ export default {
   }
 
   .info-divider {
-    margin-top: $base-margin;
+    margin-top: @base-margin;
   }
 
   .rank-wrapper {
     li {
-      height: $base-height;
-      line-height: $base-height;
+      height: @base-height;
+      line-height: @base-height;
       display: flex;
       justify-content: space-between;
 

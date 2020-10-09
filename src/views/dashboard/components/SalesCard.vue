@@ -187,11 +187,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import '~@/assets/style/variables.less';
 .rank-wrapper {
   li {
-    height: $base-height;
-    line-height: $base-height;
+    height: @base-height;
+    line-height: @base-height;
     display: flex;
     justify-content: space-between;
 

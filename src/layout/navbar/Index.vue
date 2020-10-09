@@ -39,7 +39,7 @@ import {
   mapActions
 } from 'vuex';
 import Logo from './Logo.vue';
-import variables from '@/assets/style/variables.scss';
+import variables from '@/assets/style/variables.less';
 export default {
   name: 'Navbar',
   data () {
@@ -145,7 +145,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
 .nav-wrapper {
   position: relative;
   display: flex;
@@ -166,11 +166,11 @@ export default {
   .nav-right-wrapper {
     flex: 1;
     box-shadow: 2px 2px 5px #f0f1f2; //水平向右边偏移
-    width: calc(100% - #{$sideBarWidth}); // calc变量使用插值
+    width: calc(~"100% - @{sideBarWidth}"); // calc变量使用插值;
   }
 }
 </style>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .rotate-icon {
   transform: rotate(-90deg);
 }
@@ -198,12 +198,12 @@ export default {
   }
 
   .nav-right-wrapper {
-    @include fj();
+    .fj();
   }
 }
 
 .nav-left-content {
-  @include fj(flex-start);
+  .fj(flex-start);
 }
 
 .nav-right-content {

@@ -134,14 +134,14 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="less">
 .chart-card-container {
   .el-card__body {
     padding-bottom: 10px;
   }
 }
 </style>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 //卡片组
 .chart-card-container {
   color: rgba(0, 0, 0, 0.65);

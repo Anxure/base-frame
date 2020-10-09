@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .tab-com {
   margin-bottom: 20px;
 }

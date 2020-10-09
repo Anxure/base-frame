@@ -100,7 +100,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="less">
 .other-charts-container{
     .extra-wrapper{
         position: relative;
@@ -113,5 +113,5 @@ export default {
     }
 }
 </style>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 </style>
