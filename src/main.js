@@ -4,11 +4,13 @@ import router from './router'
 import './permission' // permission control
 import store from './store'
 import * as filters from '@/filters'
+import 'view-design/dist/styles/iview.css';
 import '@/assets/style/common.scss'
+import '@/assets/style/side-menu.scss'
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
+import '@/assets/font/iconfont.css'
 import ViewUI from 'view-design';
 // import iViewPro from '@/libs/iview-pro.min.js';
-import 'view-design/dist/styles/iview.css';
 // import '@/libs/iview-pro.css';
 import api from '@/api'
 import * as utils from '@/utils'

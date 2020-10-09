@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="s-fold" unicode="&#58985;" d="M896 704H128v-128h768V704z m0-256H384v-128h512v128z m0-256H128v-128h768v128zM320 512l-192-128 192-128v256z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="s-unfold" unicode="&#58986;" d="M128 704h768v-128H128V704z m0-256h512v-128H128v128z m0-256h768v-128H128v128z m576 352l192-160-192-128v288z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

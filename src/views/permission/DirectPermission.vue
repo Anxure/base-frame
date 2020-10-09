@@ -1,38 +1,22 @@
- <template>
+<template>
   <div class="table-content" style="width:100%;overflow:hidden" :key="'permission' + key">
     <div class="tabble-com">
-      <el-radio-group v-model="radio" @change="changeRole">
-        <el-radio label="admin">admin</el-radio>
-        <el-radio label="edit">edit</el-radio>
-        <el-radio label="add">add</el-radio>
-      </el-radio-group>
+      <RadioGroup v-model="radio" @change="changeRole">
+        <Radio label="admin">admin</Radio>
+        <Radio label="edit">edit</Radio>
+        <Radio label="add">add</Radio>
+      </RadioGroup>
     </div>
     <div class="table-btn">
-      <el-button size="small" type="primary" v-permission="['add','admin']">添加</el-button>
+      <Button size="small" type="primary" v-permission="['add','admin']">添加</Button>
     </div>
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="date" label="日期" width="180">
-      </el-table-column>
-      <el-table-column prop="name" label="姓名" width="180">
-      </el-table-column>
-      <el-table-column prop="address" label="地址">
-      </el-table-column>
-      <el-table-column prop="sex" label="性别">
-        <template slot-scope="scope">
-          {{scope.row.sex | sexFilter}}
-        </template>
-      </el-table-column>
-      <el-table-column prop="phone" label="电话">
-      </el-table-column>
-      <el-table-column label="操作" width="300">
-        <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="primary" v-permission="['admin','edit']" size="small">查看
-          </el-button>
-          <el-button type="primary" size="small"  v-permission="['admin','edit']">编辑</el-button>
-          <el-button type="danger" size="small"  v-permission="['admin']">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <Table stripe :columns="columns" :data="tableData">
+      <template slot-scope="{ row, index }" slot="action">
+        <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">添加</Button>
+        <Button type="error" size="small" style="margin-right: 5px" @click="remove(index)">编辑</Button>
+        <Button type="error" size="small" @click="remove(index)">删除</Button>
+      </template>
+    </Table>
   </div>
 </template>
 
@@ -41,6 +25,33 @@ export default {
   name: 'DynamicTable',
   data () {
     return {
+      columns: [{
+        title: '日期',
+        key: 'date'
+      },
+      {
+        title: '姓名',
+        key: 'name'
+      },
+      {
+        title: '地址',
+        key: 'address'
+      },
+      {
+        title: '性别',
+        key: 'sex'
+      },
+      {
+        title: '电话',
+        key: 'phone'
+      },
+      {
+        title: '操作',
+        slot: 'action',
+        width: 300,
+        align: 'center'
+      }
+      ],
       tableData: [{
         date: '2016-05-02',
         name: '王小虎',
@@ -76,7 +87,11 @@ export default {
     },
     async changeRole (row) {
       console.log(this.$api)
-      const { data } = await this.$api.user.changeRole({ roleName: [row] })
+      const {
+        data
+      } = await this.$api.user.changeRole({
+        roleName: [row]
+      })
       this.$store.commit('SET_ROLE', data.role)
       this.key++
     }
@@ -84,10 +99,11 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .tab-com {
   margin-bottom: 20px;
 }
+
 .table-btn {
   margin: 10px 0;
 }

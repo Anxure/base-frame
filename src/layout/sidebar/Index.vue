@@ -5,8 +5,24 @@
     <Icon :type="foldCls" />
   </div>
   <!--   左边菜单列表   -->
-  <Sider collapsible :collapsed-width="62" hide-trigger :value="!open" :width="variables.sideBarWidth">
-    <side-menu ref="sideMenu" @on-select="turnToPage" :menuList="currentMenuRoutes"></side-menu>
+  <Sider collapsible :collapsed-width="62" hide-trigger :value="!open" :style="{'height':'100%'}" :width="variables.sideBarWidth">
+    <Menu v-show="open" ref="menu" accordion :theme="menuStyle" width="auto" :active-name="activeName" @on-select="onSelect" :open-names="openName">
+      <side-menu v-for="item in currentMenuRoutes" :key="item.path" :item="item"></side-menu>
+    </Menu>
+    <div :class="['menu-collapsed',`ivu-theme-${menuStyle}`]" v-show="!open" >
+      <template v-for="item in currentMenuRoutes">
+        <div v-if="!item.hidden" class="menu-collapsed-item" :key="item.path">
+          <template v-if="showChildren(item)">
+            <Tooltip transfer :content="item.meta.title" placement="right" :key="`drop-menu-${item.path}`">
+              <AppLink :to="item.path">
+                <Icon v-if="item.meta.icon" :type="item.meta.icon" size="24" />
+              </AppLink>
+            </Tooltip>
+          </template>
+          <collapsed-menu v-else :key="item.path" :item="item" topLevel></collapsed-menu>
+        </div>
+      </template>
+    </div>
   </Sider>
 </div>
 </template>
@@ -17,14 +33,21 @@ import {
   mapMutations
 } from 'vuex'
 import SideMenu from './SideMenu'
+import CollapsedMenu from './CollapsedMenu'
+import AppLink from './Link'
 import variables from '@/assets/style/variables.scss'
+import mixin from './mixin'
 export default {
+  mixins: [mixin],
   components: {
-    SideMenu
+    SideMenu,
+    CollapsedMenu,
+    AppLink
   },
   data () {
     return {
-      isCollapsed: false
+      openName: [],
+      activeName: ''
     }
   },
   computed: {
@@ -50,10 +73,30 @@ export default {
   },
   methods: {
     ...mapMutations(['TOGGLE_SIDERBAR']),
-    turnToPage () {},
+    onSelect (name) {
+      this.activeName = name
+    },
+    updateOpenName (name) {
+      this.openName = name
+    },
     toggleSideMenu () {
-      // this.isCollapsed = !this.isCollapsed
       this.TOGGLE_SIDERBAR();
+    }
+  },
+  mounted () {
+    this.activeName = this.$route.path
+    const match = this.$route.matched
+    match.pop()
+    match.shift()
+    match.map(item => {
+      this.openName.push(item.path)
+    })
+  },
+  watch: {
+    openName () {
+      this.$nextTick(() => {
+        this.$refs.menu.updateOpened()
+      })
     }
   }
 }
@@ -63,41 +106,6 @@ export default {
 .sidebar-container {
   box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
 
-  .el-menu-item {
-    width: auto;
-  }
-
-  //这里未提供相关props，采用样式覆盖了
-  &.light {
-    .logo-wrapper {
-      background: #fff;
-      margin-bottom: 1px;
-      box-shadow: 1px 1px 0 0 #e8e8e8;
-
-      h1.sidebar-title {
-        color: #409EFF;
-      }
-    }
-
-    border-right: 1px solid #e8e8e8;
-
-    .el-submenu__title:focus,
-    .el-submenu__title:hover,
-    .el-menu-item:focus,
-    .el-menu-item:hover {
-      outline: none;
-      background-color: #ecf5ff !important;
-    }
-  }
-
-  .el-menu {
-    border: none; //去除右边框
-
-    a {
-      display: inline-block;
-      width: 100%;
-    }
-  }
 }
 </style>
 <style lang="scss" scoped>

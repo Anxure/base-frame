@@ -1,0 +1,23 @@
+{
+  "id": "2089888",
+  "name": "vue-frame",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13519485",
+      "name": "s-fold",
+      "font_class": "s-fold",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "13519491",
+      "name": "s-unfold",
+      "font_class": "s-unfold",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    }
+  ]
+}

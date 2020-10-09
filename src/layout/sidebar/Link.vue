@@ -1,5 +1,4 @@
 <template>
-<div>
   <!--动态组件写法-->
   <a :href="to" v-if="isUrl" target="_blank">
     <slot></slot>
@@ -7,7 +6,6 @@
   <router-link :to="to" v-else>
     <slot></slot>
   </router-link>
-</div>
 </template>
 
 <script>
@@ -28,4 +26,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
 </style>

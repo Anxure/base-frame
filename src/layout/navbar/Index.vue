@@ -4,7 +4,8 @@
   <div class="nav-right-wrapper">
     <div class="nav-left-content">
       <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText" v-if="globalConfig.layoutStyle === 'partHeader'">
-        <Icon type="md-menu" :class="rotateIcon" />
+        <Icon custom="iconfont icons-fold" v-show="open" size="24" />
+        <Icon custom="iconfont icons-unfold" v-show="!open" size="24" />
       </div>
       <Breadcrumb separator="/" v-show="isShowBread" :style="breadcrumbStyle">
         <BreadcrumbItem v-for="(item, index) in breadcrumbData" :key="item.path">
