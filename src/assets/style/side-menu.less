@@ -1,53 +1,78 @@
 @import './variables.less';
+
 .ivu-menu {
   height: 100%;
 }
-.ivu-menu-dark {
-  .side-menu-wrapper {
+
+.sidebar-container {
+
+  .ivu-menu-submenu-title,
+  .ivu-menu-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    a {
+      color:inherit; // 不继承属性，a带有color
+    }
+  }
+
+  .ivu-select-dropdown {
+    margin: 5px 0 5px 3px;
+  }
+  .menu-collapsed {
+
+    .ivu-tooltip,
+    .ivu-tooltip-rel {
+      display: block;
+    }
     .ivu-menu-item {
-      a {
-        color: @dark-menu-text;
+      &>i {
+        margin-right: 0;
       }
-      &:hover {
-        a {
-          color: #fff;
-          transition: all 0.2s ease;
+      text-align: center;
+    }
+    .ivu-dropdown {
+      display: block;
+    }
+    // 浅色主题 
+    &.ivu-menu-light {
+      .ivu-dropdown-item {
+        // 叶子节点
+        &.dropdown-collapse-item-selected {
+          background-color: #f0faff;
+          color: #2d8cf0;
+        }
+        // title
+        &.dropdown-collapse-item-title-selected{
+          color: #2d8cf0;
         }
       }
     }
-    .ivu-menu-item.ivu-menu-item-active {
-      a {
-        color: #fff;
+
+    // 深色主题
+    &.ivu-menu-dark {
+      .ivu-dropdown-item, .ivu-dropdown-item a {
+        color: rgba(255, 255, 255, 0.7);
       }
-    }
-  }
-}
-.sidebar-container {
-  &.light {
-    .ivu-layout-sider {
-      background-color: @light-menu-bg;
-    }
-  }
-  .menu-collapsed {
-    .menu-collapsed-item {
-      .ivu-tooltip-rel a,
-      .ivu-dropdown > .ivu-dropdown-rel > li.top-level {
-        color: #515a6e;
-        display: inline-block;
-        padding: 14px 19px;
-      }
-      a.router-link-active{
-        color:@light-menu-active-color;
-        background-color:#F3F3F3 ;
-      }
-      .ivu-dropdown-item a {
-        color: #515a6e;
-      }
-    }
-    &.ivu-theme-light {
-      .menu-collapsed-item {
-        .ivu-tooltip-rel > a:hover,.ivu-dropdown>.ivu-dropdown-rel>li:hover {
-          background-color: #F3F3F3;
+      .ivu-select-dropdown{
+        background-color: #304156;
+        .ivu-dropdown-item {
+          transition: all 0.2s ease-in-out;
+          &.dropdown-collapse-item-selected {
+            color: #fff;
+            background: #2d8cf0 !important;
+          }
+          // title
+          &.dropdown-collapse-item-title-selected{
+            color: #2d8cf0;
+          }
+        }
+        .ivu-dropdown-item:hover {
+            background-color: #304156;
+            color:#fff;
+            a {
+              color:#fff;
+            }
         }
       }
     }

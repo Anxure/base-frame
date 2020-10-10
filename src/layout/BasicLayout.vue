@@ -74,6 +74,7 @@ export default {
   }
 }
 </style><style lang="less" scoped>
+@import '../assets/style/variables.less';
 .global-header {
   background-color: #fff;
   transition: width 0.28s;
