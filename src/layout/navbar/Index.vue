@@ -147,7 +147,6 @@ export default {
 
 <style lang="less">
 .nav-wrapper {
-  position: relative;
   display: flex;
 
   // .el-menu {
@@ -180,7 +179,6 @@ export default {
   line-height: 60px;
 
   .side-menu-switch {
-    width: 25px;
     padding: 0 15px;
     display: inline-block;
     height: 60px;
