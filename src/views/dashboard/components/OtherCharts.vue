@@ -3,9 +3,8 @@
     <Row :gutter="20">
       <Col :span="12">
         <card-block :bodyH="300">
-          <div slot="header">
-            <span>六要素好评率分析</span>
-            <span class="extra-wrapper">
+            <div slot="title">六要素好评率分析</div>
+            <div slot="extra">
               <Dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
                   <Icon type="ios-more" :size="20"/>
@@ -15,17 +14,15 @@
                   <DropdownItem command="refresh" icon="el-icon-refresh-right">刷新</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-            </span>
-          </div>
+            </div>
           <group-list :data="sixElemData"></group-list>
         </card-block>
       </Col>
       <Col :span="12">
-        <card-block :bodyH="300">
-          <div slot="header">
-            <span>销售额类别占比</span>
-            <span class="extra-wrapper">
-              <RadioGroup  v-model="source" type="button" size="small">
+        <card-block :bodyH="300" class="has-radio-group">
+            <div slot="title">销售额类别占比</div>
+            <div slot="extra">
+              <RadioGroup  v-model="source" type="button" style="margin-right:10px">
                 <Radio label="1">全部渠道</Radio>
                 <Radio label="2">线上</Radio>
                 <Radio label="3">门店</Radio>
@@ -39,8 +36,7 @@
                   <DropdownItem command="refresh" icon="el-icon-refresh-right">刷新</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-            </span>
-          </div>
+            </div>
           <Pie :option="saleCategroyOption" />
         </card-block>
       </Col>

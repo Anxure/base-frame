@@ -12,7 +12,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     a {
-      color:inherit; // 不继承属性，a带有color
+      color:inherit; // inherit 关键字指定一个属性应从父元素继承它的值, 全局css带有color
     }
   }
 
@@ -72,6 +72,13 @@
             color:#fff;
             a {
               color:#fff;
+            }
+            &.dropdown-collapse-item-selected {
+              color: #fff;
+              background: #2d8cf0 !important;
+            }
+            &.dropdown-collapse-item-title-selected{
+              color: #2d8cf0;
             }
         }
       }
