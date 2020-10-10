@@ -1,7 +1,7 @@
 <template>
   <div class="table-content" style="width:100%;overflow:hidden" :key="'permission' + key">
     <div class="tabble-com">
-      <RadioGroup v-model="radio" @change="changeRole">
+      <RadioGroup v-model="radio" @on-change="changeRole">
         <Radio label="admin">admin</Radio>
         <Radio label="edit">edit</Radio>
         <Radio label="add">add</Radio>
@@ -12,9 +12,11 @@
     </div>
     <Table stripe :columns="columns" :data="tableData">
       <template slot-scope="{ row, index }" slot="action">
-        <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">添加</Button>
-        <Button type="error" size="small" style="margin-right: 5px" @click="remove(index)">编辑</Button>
-        <Button type="error" size="small" @click="remove(index)">删除</Button>
+        <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)"
+          v-permission="['add', 'admin']">添加</Button>
+        <Button type="error" size="small" style="margin-right: 5px" @click="remove(index)"
+          v-permission="['edit', 'admin']">编辑</Button>
+        <Button type="error" size="small" @click="remove(index)" v-permission="['delete', 'admin']">删除</Button>
       </template>
     </Table>
   </div>
@@ -82,18 +84,15 @@ export default {
     }
   },
   methods: {
-    handleClick (row) {
-      console.log(row)
-    },
     async changeRole (row) {
-      console.log(this.$api)
-      const {
-        data
-      } = await this.$api.user.changeRole({
+      console.log(row)
+      const { code, data } = await this.$api.user.changeRole({
         roleName: [row]
       })
-      this.$store.commit('SET_ROLE', data.role)
-      this.key++
+      if (code === 0) {
+        this.$store.commit('SET_ROLE', data.role)
+        this.key++
+      }
     }
   }
 }

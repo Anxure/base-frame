@@ -66,7 +66,7 @@ const changeRole = (req, res) => {
     msg: '获取成功',
     data: {
       avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-      name: roleName,
+      name: 'admin',
       token: 11111111111,
       sex: 1,
       role: roleName
