@@ -1,7 +1,10 @@
 <template>
     <Card class="chart-card-container">
-        <div slot="title" v-if="hasHeader" class="clearfix">
-            <slot name="header"></slot>
+        <div slot="title"  v-if="showTitleSlot">
+          <slot name="title"></slot>
+        </div>
+        <div slot="extra"  v-if="showTitleSlot">
+            <slot name="extra"></slot>
         </div>
         <div :style="{height: typeof bodyH === 'string' ? bodyH : bodyH + 'px'}">
           <slot></slot>
@@ -23,11 +26,15 @@ export default {
   },
   data () {
     return {
-      hasHeader: false
+      showTitleSlot: false,
+      showExtraSlot: false
     }
   },
-  mounted () {
-    this.hasHeader = !!this.$slots.header
+  // 需要放在created中
+  created () {
+    // 注：span 无法作为slot节点
+    this.showTitleSlot = !!this.$slots.title;
+    this.showExtraSlot = !!this.$slots.extra;
   }
 }
 </script>
