@@ -15,6 +15,7 @@ module.exports = {
     'no-debugger': 'off',
     'no-eq-null': 2, // 不允许对null用==或者!=
     'no-var': 2,
+    'space-before-function-paren': 2, // 函数参数与名称之前不要求一定要有空格
     'no-dupe-keys': 2, // 对象中不允许出现重复的键
     'no-empty': 2, // 不允许出现空的代码块
     'no-irregular-whitespace': 2, // 不允许出现不规则的空格

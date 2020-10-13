@@ -9,7 +9,7 @@ import '@/assets/style/common.scss'
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 import api from '@/api'
 import * as utils from '@/utils'
-import { initPermission } from '@/directives/permission'
+import { authDirective } from '@/directives/permission'
 Vue.config.productionTip = false
 Vue.prototype.$api = api;
 Vue.prototype.$utils = utils;
@@ -17,8 +17,7 @@ Vue.prototype.$utils = utils;
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 })
-initPermission()
-// 全局修改滚动条样式
+Vue.use(authDirective)
 new Vue({
   router,
   store,

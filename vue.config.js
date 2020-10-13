@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin// 打包文件分析
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-const openGzip = true // 是否开启gzip压缩
+const openGzip = false // 是否开启gzip压缩
 const IS_ANALYZ = true // 是否开启打包分析
 const productionGzipExtensions = ['js', 'css', 'json', 'txt', 'html', 'ico', 'svg']
 module.exports = {
@@ -58,6 +58,32 @@ module.exports = {
     config.performance.set('hints', false)
     // 添加文件别名
     config.resolve.alias.set('@', resolve('src'))
+    config.when(IS_PRODUCTION, config => {
+      config.optimization.splitChunks({
+        chunks: 'all',
+        cacheGroups: {
+          libs: {
+            name: 'chunk-libs',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 10,
+            chunks: 'initial' // only package third parties that are initially dependent
+          },
+          elementUI: {
+            name: 'chunk-elementUI', // split elementUI into a single package
+            priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+            test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
+          },
+          commons: {
+            name: 'chunk-commons',
+            test: resolve('src/components'), // can customize your rules
+            minChunks: 3, //  minimum common number
+            priority: 5,
+            reuseExistingChunk: true
+          }
+        }
+      });
+      config.optimization.runtimeChunk('single');
+    })
     // 是否开启打包分析
     if (IS_ANALYZ && IS_PRODUCTION) {
       config.plugin('webpack-report').use(BundleAnalyzerPlugin, [
