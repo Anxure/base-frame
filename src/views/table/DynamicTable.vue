@@ -9,9 +9,9 @@
       </Col>
     </Row>
     <Table :data="tableData" :columns="tableColumns" border style="width: 100%">
-      <template slot-scope="{ row, index }" slot="action">
-        <Button type="primary" size="small" style="margin-right: 5px" @click="handleClick(index)">编辑</Button>
-        <Button type="error" size="small" @click="deleteRow(index)">删除</Button>
+      <template slot-scope="{ row }" slot="action">
+        <Button type="primary" size="small" style="margin-right: 5px" @click="handleClick(row)">编辑</Button>
+        <Button type="error" size="small" @click="deleteRow(row)">删除</Button>
       </template>
     </Table>
   </div>
@@ -89,6 +89,7 @@ export default {
       this.$router.push('/table/dynamic-table/add');
     },
     handleClick (row) {
+      console.log(row)
       this.$router.push(`/table/dynamic-table/edit/${row.date}`);
     },
     deleteRow (index) {
