@@ -3,16 +3,12 @@
     <li v-if="topLevel" :class="[topLevel && 'top-level', menuItemClasses]">
       <Icon v-if="item.meta.icon" :type="item.meta.icon" size="24" />
     </li>
-    <DropdownItem
-      v-else
-      :class="{
+    <DropdownItem v-else :class="{
         'dropdown-collapse-item-title-selected':
           openName.indexOf(item.path) >= 0,
-      }"
-    >
+      }">
       <Icon v-if="item.meta.icon" :type="item.meta.icon" size="24" />
-      <span v-if="!topLevel"
-        >{{ item.meta.title }}
+      <span v-if="!topLevel">{{ item.meta.title }}
         <Icon type="ios-arrow-forward"></Icon>
       </span>
     </DropdownItem>
@@ -22,26 +18,16 @@
           <template v-if="showChildren(child)">
             <!-- 这里添加原生事件 -->
             <AppLink :to="child.path" :key="child.path">
-              <DropdownItem
-                :key="child.path"
-                @click.native="updateActiveName(child.path)"
-                :class="{
+              <DropdownItem :key="child.path" @click.native="updateActiveName(child.path)" :class="{
                   'dropdown-collapse-item-selected': child.path === activeName,
-                }"
-              >
+                }">
                 <span>{{ child.meta.title }}</span>
               </DropdownItem>
             </AppLink>
           </template>
           <!-- 这里把初始属性再次传入,$listeners 传入事件 -->
-          <collapsed-menu
-            v-else
-            :item="child"
-            :openName="openName"
-            :activeName="activeName"
-            @parentUpdateActiveName="$listeners.parentUpdateActiveName"
-            :key="child.path"
-          ></collapsed-menu>
+          <collapsed-menu v-else :item="child" :openName="openName" :activeName="activeName"
+            @parentUpdateActiveName="$listeners.parentUpdateActiveName" :key="child.path"></collapsed-menu>
         </template>
       </template>
     </DropdownMenu>

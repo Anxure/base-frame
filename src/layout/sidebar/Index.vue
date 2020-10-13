@@ -1,70 +1,33 @@
 <template>
   <div class="sidebar-container" :class="[menuStyle]">
     <!-- 控制切换按钮 -->
-    <div
-      class="side-menu-switch"
-      @click="toggleSideMenu"
-      :title="foldText"
-      v-if="globalConfig.layoutStyle === 'fullHeader'"
-    >
+    <div class="side-menu-switch" @click="toggleSideMenu" :title="foldText"
+      v-if="globalConfig.layoutStyle === 'fullHeader'">
       <Icon :type="foldCls" />
     </div>
     <!--   左边菜单列表   -->
-    <Sider
-      :style="{ height: '100%' }"
-      :width="variables.sideBarWidth"
-    >
-      <Menu
-        ref="menu"
-        accordion
-        :theme="menuStyle"
-        width="auto"
-        :active-name="activeName"
-        @on-select="onSelect"
-        :open-names="openName"
-        :class="[!open ? 'menu-collapsed' : '']"
-      >
+    <Sider :style="{ height: '100%' }" :width="variables.sideBarWidth">
+      <Menu ref="menu" accordion :theme="menuStyle" width="auto" :active-name="activeName" @on-select="onSelect"
+        :open-names="openName" :class="[!open ? 'menu-collapsed' : '']">
         <template v-if="open">
-          <side-menu
-            v-for="item in currentMenuRoutes"
-            :key="item.path"
-            :item="item"
-          ></side-menu>
+          <side-menu v-for="item in currentMenuRoutes" :key="item.path" :item="item"></side-menu>
         </template>
         <template v-else>
-            <template v-for="item in currentMenuRoutes">
-              <template
-                v-if="!item.hidden"
-              >
-                <template v-if="showChildren(item)">
-                  <Tooltip
-                    transfer
-                    :content="item.meta.title"
-                    placement="right"
-                    :key="`drop-menu-${item.path}`"
-                  >
-                   <MenuItem :key="item.path" :name="item.path">
-                    <AppLink :to="item.path">
-                      <Icon
-                        v-if="item.meta.icon"
-                        :type="item.meta.icon"
-                        size="24"
-                      />
-                    </AppLink>
-                    </MenuItem>
-                  </Tooltip>
-                </template>
-                <collapsed-menu
-                  v-else
-                  @parentUpdateActiveName="updateActive"
-                  :openName="openName"
-                  :activeName="activeName"
-                  :key="item.path"
-                  :item="item"
-                  topLevel
-                ></collapsed-menu>
+          <template v-for="item in currentMenuRoutes">
+            <template v-if="!item.hidden">
+              <template v-if="showChildren(item)">
+                <Tooltip transfer :content="item.meta.title" placement="right" :key="`drop-menu-${item.path}`">
+                  <MenuItem :key="item.path" :name="item.path">
+                  <AppLink :to="item.path">
+                    <Icon v-if="item.meta.icon" :type="item.meta.icon" size="24" />
+                  </AppLink>
+                  </MenuItem>
+                </Tooltip>
               </template>
+              <collapsed-menu v-else @parentUpdateActiveName="updateActive" :openName="openName"
+                :activeName="activeName" :key="item.path" :item="item" topLevel></collapsed-menu>
             </template>
+          </template>
         </template>
       </Menu>
     </Sider>
@@ -175,19 +138,19 @@ export default {
 <style lang="less">
 .sidebar-container {
   box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
-   .menu-item span{
-        display: inline-block;
-        overflow: hidden;
-        width: 69px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        vertical-align: bottom;
-        transition: width .2s ease .2s;
-    }
-    .collapsed-menu span{
-        width: 0px;
-        transition: width .2s ease;
-    }
+  .menu-item span {
+    display: inline-block;
+    overflow: hidden;
+    width: 69px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: width 0.2s ease 0.2s;
+  }
+  .collapsed-menu span {
+    width: 0px;
+    transition: width 0.2s ease;
+  }
 }
 </style>
 <style lang="less" scoped>
