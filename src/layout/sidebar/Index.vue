@@ -37,7 +37,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import SideMenu from './SideMenu';
-import CollapsedMenu from './collapsedMenu';
+import CollapsedMenu from './CollapsedMenu';
 import AppLink from './Link';
 import variables from '@/assets/style/variables.less';
 import mixin from './mixin';
