@@ -1,6 +1,5 @@
 /*
  *@description: 路由权限拦截
- *@author: zdww Chengdu r&d center
  *@date: 2020-05-14 11:31:24
  *@version: V1.0.5
  */
