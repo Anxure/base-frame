@@ -98,6 +98,7 @@ router.beforeEach(async (to, from, next) => {
       next({ ...to, replace: true });
     }
   } else {
+    isAddedRoutes = false
     // 未登录
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
