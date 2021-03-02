@@ -91,13 +91,13 @@ router.beforeEach(async (to, from, next) => {
       next({ ...to, replace: true });
     }
   } else {
+    // fixbug- 修复切换账号后不更新路由问题
+    isAddedRoutes = false;
     // 未登录
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next();
     } else {
-      // fixbug- 修复切换账号后不更新路由问题
-      isAddedRoutes = false;
       // other pages that do not have permission to access are redirected to the login page.
       next(`/login?redirect=${to.fullPath}`);
       NProgress.done();
