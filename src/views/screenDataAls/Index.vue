@@ -283,6 +283,7 @@ export default {
       this.year = now.getFullYear()
       this.month = now.getMonth() + 1
       this.day = now.getDate()
+      this.week = '星期' + '日一二三四五六'.charAt(new Date().getDay())
       setInterval(() => {
         const time = new Date()
         const hours = time.getHours()
