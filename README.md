@@ -1,4 +1,4 @@
-# zdww-base-frame
+# base-frame
 基于Vue、ElementUI的管理系统架构，让开发人员专注于业务，其他琐事，交给框架！
 
 感谢开源社区，感谢Element团队提供的优秀开源项目!
@@ -26,7 +26,7 @@
 # 目录结构
 
 ```
-zdww-base-frame
+base-frame
 ├─ mock
 ├─ public
 ├─ src

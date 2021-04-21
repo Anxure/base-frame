@@ -30,7 +30,7 @@ export const asyncRoutes = [
         meta: { hiddenBreadcrumb: true }
       },
       {
-        path: 'https://github.com/Anxure/zdww-base-frame',
+        path: 'https://github.com/Anxure/base-frame',
         name: 'Document',
         auth: ['guest'],
         meta: { title: '文档查看', icon: 'document' }
