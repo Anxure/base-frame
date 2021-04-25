@@ -27,13 +27,13 @@ export const asyncRoutes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard/Index.vue'),
-        meta: { hiddenBreadcrumb: true }
+        meta: { hiddenBreadcrumb: true, icon: 'dashboard' }
       },
       {
-        path: 'https://github.com/Anxure/-base-frame',
+        path: 'https://github.com/Anxure/base-frame',
         name: 'Document',
         auth: ['guest'],
-        meta: { title: '文档查看', icon: 'md-book' }
+        meta: { title: '文档查看', icon: 'github' }
       },
       {
         path: '/permission',

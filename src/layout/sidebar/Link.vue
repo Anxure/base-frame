@@ -1,17 +1,24 @@
 <template>
-  <!--动态组件写法-->
-  <a :href="to" v-if="isUrl" target="_blank">
-    <slot></slot>
-  </a>
-  <router-link :to="to" v-else>
-    <slot></slot>
-  </router-link>
+  <div>
+    <!--动态组件写法-->
+    <a
+      :href="to"
+      v-if="isUrl"
+      target="_blank"
+    >
+      <slot></slot>
+    </a>
+    <router-link
+      :to="to"
+      v-else
+    >
+      <slot></slot>
+    </router-link>
+  </div>
 </template>
 
 <script>
-import {
-  isExternal
-} from '@/utils'
+import { isExternal } from '@/utils';
 export default {
   name: 'Link',
   props: {
@@ -19,10 +26,10 @@ export default {
   },
   computed: {
     isUrl () {
-      return isExternal(this.to)
+      return isExternal(this.to);
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -1,12 +1,12 @@
 <template>
-  <Row :gutter="20">
-    <Col :span="6">
+  <a-row :gutter="20">
+    <a-col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>总销售额</span>
-          <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
+          <a-tooltip  theme="dark" content="介绍" placement="top">
+            <a-icon type="ios-information-circle-outline" :size="18"/>
+          </a-tooltip>
         </div>
         <div>
           <p class="total">{{200000 | toThousandFilter('¥')}}</p>
@@ -30,8 +30,8 @@
           </p>
         </div>
       </CardBlock>
-    </Col>
-    <Col :span="6">
+    </a-col>
+    <a-col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>日访问量</span>
@@ -52,8 +52,8 @@
           </p>
         </div>
       </CardBlock>
-    </Col>
-    <Col :span="6">
+    </a-col>
+    <a-col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>支付笔数</span>
@@ -74,8 +74,8 @@
           </p>
         </div>
       </CardBlock>
-    </Col>
-    <Col :span="6">
+    </a-col>
+    <a-col :span="6">
       <CardBlock>
         <div class="header clearfix">
           <span>运营活动效果</span>
@@ -104,8 +104,8 @@
           </div>
         </div>
       </CardBlock>
-    </Col>
-  </Row>
+    </a-col>
+  </a-row>
 </template>
 
 <script>

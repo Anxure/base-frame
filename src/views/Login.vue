@@ -1,21 +1,21 @@
 <template>
 <div class="login-container">
-  <Form ref="loginForm" class="login-form" :model="formObj" :rules="loginRules">
+  <a-form-model ref="loginForm" class="login-form" :model="formObj" :rules="loginRules">
     <div class="title-container">
       <h3 class="title">{{title}}</h3>
     </div>
-    <FormItem prop="username">
-      <Input v-model="formObj.username" size="large" placeholder="用户名：admin">
-      <Icon type="ios-person-outline" slot="prepend"></Icon>
-      </Input>
-    </FormItem>
-    <FormItem prop="password">
-      <Input type="password" size="large" v-model="formObj.password" @keyup.enter.native="handleLogin" placeholder="密码：any">
-      <Icon type="ios-lock-outline" slot="prepend"></Icon>
-      </Input>
-    </FormItem>
-    <Button :loading="loading" size="large" class="submit-btn" type="primary" @click="handleLogin">{{loading ? '登录中' : '登录'}}</Button>
-  </Form>
+    <a-form-model-item prop="username">
+      <a-input v-model="formObj.username" size="large" placeholder="用户名：admin">
+      <a-icon type="user" slot="prefix"/>
+      </a-input>
+    </a-form-model-item>
+    <a-form-model-item prop="password">
+      <a-input type="password" size="large" v-model="formObj.password" @keyup.enter.native="handleLogin" placeholder="密码：any">
+      <a-icon type="lock" slot="prefix"/>
+      </a-input>
+    </a-form-model-item>
+    <a-button :loading="loading" size="large" class="submit-btn" type="primary" @click="handleLogin">{{loading ? '登录中' : '登录'}}</a-button>
+  </a-form-model>
 </div>
 </template>
 
