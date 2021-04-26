@@ -40,5 +40,9 @@ export default {
 </script>
 <!--scoped下 子组件无法影响 slot 样式-->
 <style lang="less">
-
+.has-radio-group{
+  .ant-card-extra{
+    padding: 12px 0;
+  }
+}
 </style>

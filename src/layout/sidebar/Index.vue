@@ -1,9 +1,9 @@
 <template>
   <a-layout-sider
     :collapsed="!open"
-    :trigger="null"
     collapsible
     class="fixed-sider"
+    v-bind="triggerObj"
   >
     <a-menu
       :openKeys="openKeys"
@@ -11,7 +11,7 @@
       @click="onMenuClick"
       :selectedKeys="menuSelectedKeys"
       style="height:100%"
-      theme="dark"
+      :theme="globalConfig.menuStyle"
       mode="inline"
     >
       <template v-for="item in currentMenuRoutes">
@@ -33,12 +33,20 @@
         />
       </template>
     </a-menu>
+    <span
+      class="toggle-trigger"
+      v-if="globalConfig.layoutStyle === 'fullHeader'"
+      slot="trigger"
+      @click="toggleSideMenu"
+    >
+      <a-icon :type="open ? 'left' : 'right'" />
+    </span>
   </a-layout-sider>
 </template>
 <script>
 import SidebarItem from './SidebarItem';
 import AppLink from './Link';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 export default {
   components: {
     SidebarItem,
@@ -51,7 +59,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(['addRoutes', 'open']),
+    ...mapState(['addRoutes', 'open', 'globalConfig']),
+    // 动态添加trigger
+    triggerObj () {
+      return this.globalConfig.layoutStyle === 'fullHeader'
+        ? {}
+        : {
+          trigger: null
+        };
+    },
     currentMenuRoutes () {
       return this.addRoutes[0].children; // 从第一项children开始遍历
     },
@@ -63,6 +79,10 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['TOGGLE_SIDERBAR']),
+    toggleSideMenu () {
+      this.TOGGLE_SIDERBAR();
+    },
     onOpenChange (openKeys) {
       const latestOpenKey = openKeys.find(
         (key) => this.openKeys.indexOf(key) === -1
@@ -106,5 +126,9 @@ export default {
   left: 0;
   height: calc(100vh - 60px);
   overflow-y: auto;
+  .toggle-trigger{
+    width: 100%;
+    display: inline-block;
+  }
 }
 </style>

@@ -3,8 +3,8 @@
     <span>
       <slot></slot>
       <a-icon
-        :class="['trend-icon', flag === 'up' ? 'arrow-up' : 'arrow-down']"
-        :type="flag === 'up' ? 'arrow-up' : 'arrow-down'"
+        :class="['trend-icon', flag === 'up' ? 'caret-up' : 'caret-down']"
+        :type="flag === 'up' ? 'caret-up' : 'caret-down'"
         :size="18"
       ></a-icon>
     </span>
@@ -31,10 +31,10 @@ export default {
   }
   .trend-icon {
     margin-left: 5px;
-    &.arrow-down {
+    &.caret-down {
       color: #ff4d4f;
     }
-    &.arrow-up {
+    &.caret-up {
       color: #52c41a;
     }
   }

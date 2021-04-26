@@ -1,3 +1,12 @@
+<!--
+ * @Author: ykx
+ * @Date: 2021-04-26 15:40:06
+ * @LastEditTime: 2021-04-26 17:40:48
+ * @LastEditors: your name
+ * @Description: 渲染多个动画卡顿 ？？
+ * @FilePath: \zdww-base-frame\src\components\Charts\LiquidFill\Index.vue
+-->
+
 <template>
   <div class="gropu-content">
     <div class="loading-wrapper" v-if="loading">

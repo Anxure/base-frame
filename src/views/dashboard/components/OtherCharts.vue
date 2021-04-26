@@ -37,7 +37,6 @@
             <a-radio-group
               v-model="source"
               type="button"
-              size="small"
               style="margin-right:10px"
             >
               <a-radio-button value="1">全部渠道</a-radio-button>

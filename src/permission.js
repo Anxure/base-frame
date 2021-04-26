@@ -7,9 +7,8 @@ import router from './router';
 import store from './store';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import { Message } from 'view-design';
+import { Message } from 'ant-design-vue';
 import { getToken } from '@/utils';
-console.log(Message)
 /**
  * 递归路由为一维数组
  * @param {Array} resRouter - 后端 | 本地 返回路由树
