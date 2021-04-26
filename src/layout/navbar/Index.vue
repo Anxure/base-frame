@@ -147,7 +147,7 @@ export default {
       }
     },
     logout () {
-      this.$Modal.confirm({
+      this.$confirm({
         title: '系统提示',
         content: '是否退出登录？',
         onOk: async () => {

@@ -1,11 +1,11 @@
 <template>
   <a-row :gutter="20">
     <a-col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
+      <card-block>
+        <div class="header">
           <span>总销售额</span>
-          <a-tooltip  theme="dark" content="介绍" placement="top">
-            <a-icon type="ios-information-circle-outline" :size="18"/>
+          <a-tooltip  theme="dark" title="介绍" placement="top">
+            <a-icon type="info-circle" />
           </a-tooltip>
         </div>
         <div>
@@ -29,15 +29,15 @@
             {{200000 | toThousandFilter('¥')}}
           </p>
         </div>
-      </CardBlock>
+      </card-block>
     </a-col>
     <a-col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
+      <card-block>
+        <div class="header">
           <span>日访问量</span>
-            <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
+            <a-tooltip  theme="dark" title="介绍" placement="top">
+             <a-icon type="info-circle" />
+          </a-tooltip>
         </div>
         <div>
           <p class="total">{{200000 | toThousandFilter()}}</p>
@@ -51,15 +51,15 @@
             {{200000 | toThousandFilter()}}
           </p>
         </div>
-      </CardBlock>
+      </card-block>
     </a-col>
     <a-col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
+      <card-block>
+        <div class="header">
           <span>支付笔数</span>
-         <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
+         <a-tooltip  theme="dark" title="介绍" placement="top">
+            <a-icon type="info-circle" />
+          </a-tooltip>
         </div>
         <div>
           <p class="total">{{200000 | toThousandFilter()}}</p>
@@ -73,15 +73,15 @@
             60%
           </p>
         </div>
-      </CardBlock>
+      </card-block>
     </a-col>
     <a-col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
+      <card-block>
+        <div class="header">
           <span>运营活动效果</span>
-          <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
+          <a-tooltip  theme="dark" title="介绍" placement="top">
+             <a-icon type="info-circle" />
+          </a-tooltip>
         </div>
         <div>
           <p class="total">70%</p>
@@ -103,7 +103,7 @@
             </Trend>
           </div>
         </div>
-      </CardBlock>
+      </card-block>
     </a-col>
   </a-row>
 </template>
@@ -147,6 +147,9 @@ export default {
   color: rgba(0, 0, 0, 0.65);
   .header {
     color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
   }
   .total {
     color: rgba(0, 0, 0, 0.85);

@@ -1,11 +1,11 @@
 <template>
 <div class="mini-pro-container">
-  <Tooltip class="item" theme="dark" :content="`${percent}%`" placement="top">
+  <a-tooltip class="item" theme="dark" :title="`${percent}%`" placement="top">
     <div class="target" :style="{left : targetPercent + '%',lineHeight : strokeWidthStr,height : strokeWidthStr}">
       <span></span>
       <span></span>
     </div>
-  </Tooltip>
+  </a-tooltip>
   <div class="pro-wrapper">
     <div class="pro-finished" :style="{width : percent + '%',backgroundColor : color,height : strokeWidthStr}"></div>
   </div>

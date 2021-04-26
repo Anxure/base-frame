@@ -1,7 +1,7 @@
 <!--
  * @Author: ykx
  * @Date: 2021-04-23 16:30:49
- * @LastEditTime: 2021-04-25 15:14:27
+ * @LastEditTime: 2021-04-26 11:53:17
  * @LastEditors: your name
  * @Description:
  * @FilePath: \zdww-base-frame\src\layout\sidebar\SidebarItem.vue
@@ -35,21 +35,23 @@
       </span>
     </div>
     <template v-for="item in props.menuInfo.children">
-      <a-menu-item
-        v-if="(item.children && item.children.length === 0) || !item.children"
-        :key="item.path"
-      >
-        <router-link :to="item.path">
-          <!-- <i class="iconfont iconshuangxiangyoujiantou" /> 去掉箭头 -->
-          {{ item.meta.title }}
-        </router-link>
-      </a-menu-item>
-      <sidebar-item
-        v-else
-        :key="item.path"
-        :menu-info="item"
-        :rootSubmenuKeys="props.rootSubmenuKeys"
-      />
+      <template v-if="!item.hidden">
+        <a-menu-item
+          v-if="(item.children && item.children.length === 0) || !item.children"
+          :key="item.path"
+        >
+          <router-link :to="item.path">
+            <!-- <i class="iconfont iconshuangxiangyoujiantou" /> 去掉箭头 -->
+            {{ item.meta.title }}
+          </router-link>
+        </a-menu-item>
+        <sidebar-item
+          v-else
+          :key="item.path"
+          :menu-info="item"
+          :rootSubmenuKeys="props.rootSubmenuKeys"
+        />
+      </template>
     </template>
   </a-sub-menu>
 </template>

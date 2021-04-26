@@ -1,24 +1,24 @@
 <template>
   <div class="table-content" style="width:100%;overflow:hidden" :key="'permission' + key">
     <div class="tabble-com">
-      <RadioGroup v-model="radio" @on-change="changeRole">
-        <Radio label="admin">admin</Radio>
-        <Radio label="edit">edit</Radio>
-        <Radio label="add">add</Radio>
-      </RadioGroup>
+      <a-radio-group v-model="radio" @change="changeRole">
+        <a-radio value="admin">admin</a-radio>
+        <a-radio value="edit">edit</a-radio>
+        <a-radio value="add">add</a-radio>
+      </a-radio-group>
     </div>
     <div class="table-btn">
-      <Button size="small" type="primary" v-permission="['add','admin']">添加</Button>
+      <a-button type="primary" v-permission="['add','admin']">添加</a-button>
     </div>
-    <Table stripe :columns="columns" :data="tableData">
-      <template slot-scope="{ row, index }" slot="action">
-        <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)"
-          v-permission="['add', 'admin']">添加</Button>
-        <Button type="error" size="small" style="margin-right: 5px" @click="remove(index)"
-          v-permission="['edit', 'admin']">编辑</Button>
-        <Button type="error" size="small" @click="remove(index)" v-permission="['delete', 'admin']">删除</Button>
+    <a-table :columns="columns" :data-source="tableData" rowKey="date">
+      <template slot-scope="text, row, index " slot="action">
+        <a-button type="primary" size="small" style="margin-right: 5px" @click="show(index)"
+          v-permission="['add', 'admin']">添加</a-button>
+        <a-button type="error" size="small" style="margin-right: 5px" @click="remove(index)"
+          v-permission="['edit', 'admin']">编辑</a-button>
+        <a-button type="error" size="small" @click="remove(index)" v-permission="['delete', 'admin']">删除</a-button>
       </template>
-    </Table>
+    </a-table>
   </div>
 </template>
 
@@ -29,27 +29,31 @@ export default {
     return {
       columns: [{
         title: '日期',
-        key: 'date'
+        dataIndex: 'date'
       },
       {
         title: '姓名',
-        key: 'name'
+        dataIndex: 'name'
       },
       {
         title: '地址',
-        key: 'address'
+        dataIndex: 'address'
       },
       {
         title: '性别',
-        key: 'sex'
+        dataIndex: 'sex',
+        customRender: val => {
+          return val === 0 ? '男' : '女'
+        }
       },
       {
         title: '电话',
-        key: 'phone'
+        dataIndex: 'phone'
       },
       {
         title: '操作',
-        slot: 'action',
+        key: 'action',
+        scopedSlots: { customRender: 'action' },
         width: 300,
         align: 'center'
       }
@@ -84,10 +88,9 @@ export default {
     }
   },
   methods: {
-    async changeRole (row) {
-      console.log(row)
+    async changeRole (e) {
       const { code, data } = await this.$api.user.changeRole({
-        roleName: [row]
+        roleName: [e.target.value]
       })
       if (code === 0) {
         this.$store.commit('SET_ROLE', data.role)

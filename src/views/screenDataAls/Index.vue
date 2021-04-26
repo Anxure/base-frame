@@ -20,8 +20,8 @@
       </header>
       <div class="chart-display-wrapper">
         <div class="line-block middle">
-          <Row class="full-block">
-            <Col :span="6" class="full-block">
+          <a-row class="full-block">
+            <a-col :span="6" class="full-block">
               <div class="block-info middle-block">
                 <sort-list
                   sortTitle="网评检测分析-好评TOP10"
@@ -32,47 +32,47 @@
               <div class="block-info middle-block">
                 <Bar :option="dataSource" theme="screen" height="100%" />
               </div>
-            </Col>
-            <Col :span="12" style="position:relative;height:100%" >
+            </a-col>
+            <a-col :span="12" style="position:relative;height:100%" >
               <map-timeline></map-timeline>
               <div class="marquee-wrapper" style="display:none">
                 <Marquee :content="marqueeData"></Marquee>
               </div>
-            </Col>
-            <Col :span="6"  class="full-block">
+            </a-col>
+            <a-col :span="6"  class="full-block">
               <div class="block-info middle-block">
                 <group-list title="六要素好评分析率" :data="sixElemData"></group-list>
               </div>
               <div class="block-info middle-block">
                  <line-chart :option="scenicGradeOption" theme="screen"/>
               </div>
-            </Col>
-          </Row>
+            </a-col>
+          </a-row>
         </div>
         <div class="line-block">
-          <Row class="full-block">
-            <Col :span="6" class="full-block">
+          <a-row class="full-block">
+            <a-col :span="6" class="full-block">
                <div class="block-info full-block">
                  <Pie :option="touristSexOption" theme="screen" />
                </div>
-            </Col>
-            <Col :span="12" class="full-block">
+            </a-col>
+            <a-col :span="12" class="full-block">
               <div class="block-info full-block">
                 <Bar
                   :option="tourNewOldOption"
                   theme="screen"
                 />
               </div>
-            </Col>
-            <Col :span="6" class="full-block">
+            </a-col>
+            <a-col :span="6" class="full-block">
               <div class="block-info full-block">
                 <Radar
                   :option="carInfoOption"
                   theme="screen"
                 />
               </div>
-            </Col>
-          </Row>
+            </a-col>
+          </a-row>
         </div>
       </div>
     </div>
@@ -364,7 +364,7 @@ export default {
           }
         }
         .chart-display-wrapper{
-          height:95vh;
+          height:100vh;
           padding-top:5vh;
           .line-block{
             overflow: hidden;

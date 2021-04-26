@@ -1,13 +1,13 @@
 // 这里tab-panle 切换可能会造成图表渲染宽高不对，建议采用dom v-if
 <template>
   <card-block>
-    <Tabs v-model="active">
-      <TabPane label="销售额(柱状)" name="sale">
-        <Row :gutter="20">
-          <Col :span="16">
+    <a-tabs v-model="active">
+      <a-tab-pane tab="销售额(柱状)" key="sale">
+        <a-row :gutter="20">
+          <a-col :span="16">
             <Bar v-if="active === 'sale'" :option="dataSalesSource" />
-          </Col>
-          <Col :span="8">
+          </a-col>
+          <a-col :span="8">
             <div class="rank-wrapper">
               <h4>
                 门店前10名销售额排名情况
@@ -22,15 +22,15 @@
                 </li>
               </ul>
             </div>
-          </Col>
-        </Row>
-      </TabPane>
-      <TabPane label="访问量(折线)" name="visited">
-        <Row :gutter="20">
-          <Col :span="16">
+          </a-col>
+        </a-row>
+      </a-tab-pane>
+      <a-tab-pane tab="访问量(折线)" key="visited">
+        <a-row :gutter="20">
+          <a-col :span="16">
             <line-chart v-if="active === 'visited'" :option="dataVisitedSource" />
-          </Col>
-          <Col :span="8">
+          </a-col>
+          <a-col :span="8">
             <div class="rank-wrapper">
               <h4>
                 门店前10名访问量排名情况
@@ -45,10 +45,10 @@
                 </li>
               </ul>
             </div>
-          </Col>
-        </Row>
-      </TabPane>
-    </Tabs>
+          </a-col>
+        </a-row>
+      </a-tab-pane>
+    </a-tabs>
   </card-block>
 </template>
 
@@ -190,6 +190,9 @@ export default {
 <style lang="less" scoped>
 @import '~@/assets/style/variables.less';
 .rank-wrapper {
+  &>h4 {
+    margin-bottom: 20px;
+  }
   li {
     height: @base-height;
     line-height: @base-height;

@@ -1,46 +1,72 @@
 <template>
   <div class="other-charts-container">
-    <Row :gutter="20">
-      <Col :span="12">
+    <a-row :gutter="20">
+      <a-col :span="12">
         <card-block :bodyH="300">
-            <div slot="title">六要素好评率分析</div>
-            <div slot="extra">
-              <Dropdown @command="handleCommand">
-                <span class="el-dropdown-link">
-                  <Icon type="ios-more" :size="20"/>
-                </span>
-                <DropdownMenu slot="list">
-                  <DropdownItem command="edit" icon="el-icon-edit-outline">编辑</DropdownItem>
-                  <DropdownItem command="refresh" icon="el-icon-refresh-right">刷新</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
+          <div slot="title">六要素好评率分析</div>
+          <div slot="extra">
+            <a-dropdown>
+              <span class="el-dropdown-link">
+                <a-icon type="dash" />
+              </span>
+              <a-menu
+                slot="overlay"
+                @click="handleCommand"
+              >
+                <a-menu-item key="edit">
+                  <a-icon type="edit" />
+                  编辑
+                </a-menu-item>
+                <a-menu-item key="refresh">
+                  <a-icon type="sync" />
+                  刷新
+                </a-menu-item>
+              </a-menu>
+            </a-dropdown>
+          </div>
           <group-list :data="sixElemData"></group-list>
         </card-block>
-      </Col>
-      <Col :span="12">
-        <card-block :bodyH="300" class="has-radio-group">
-            <div slot="title">销售额类别占比</div>
-            <div slot="extra">
-              <RadioGroup  v-model="source" type="button" style="margin-right:10px">
-                <Radio label="1">全部渠道</Radio>
-                <Radio label="2">线上</Radio>
-                <Radio label="3">门店</Radio>
-              </RadioGroup>
-              <Dropdown @command="handleCommand">
-                <span class="el-dropdown-link">
-                  <Icon type="ios-more" :size="20"/>
-                </span>
-                <DropdownMenu slot="list">
-                  <DropdownItem command="edit" icon="el-icon-edit-outline">编辑</DropdownItem>
-                  <DropdownItem command="refresh" icon="el-icon-refresh-right">刷新</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
+      </a-col>
+      <a-col :span="12">
+        <card-block
+          :bodyH="300"
+          class="has-radio-group"
+        >
+          <div slot="title">销售额类别占比</div>
+          <div slot="extra">
+            <a-radio-group
+              v-model="source"
+              type="button"
+              size="small"
+              style="margin-right:10px"
+            >
+              <a-radio-button value="1">全部渠道</a-radio-button>
+              <a-radio-button value="2">线上</a-radio-button>
+              <a-radio-button value="3">门店</a-radio-button>
+            </a-radio-group>
+            <a-dropdown>
+              <span class="el-dropdown-link">
+                <a-icon type="dash" />
+              </span>
+              <a-menu
+                slot="overlay"
+                @click="handleCommand"
+              >
+                <a-menu-item key="edit">
+                  <a-icon type="edit" />
+                  编辑
+                </a-menu-item>
+                <a-menu-item key="refresh">
+                  <a-icon type="sync" />
+                  刷新
+                </a-menu-item>
+              </a-menu>
+            </a-dropdown>
+          </div>
           <Pie :option="saleCategroyOption" />
         </card-block>
-      </Col>
-    </Row>
+      </a-col>
+    </a-row>
   </div>
 </template>
 <script>
@@ -90,24 +116,27 @@ export default {
     Pie
   },
   methods: {
-    handleCommand (type) {
-      this.$message.info(`你点击了${type === 'edit' ? '编辑' : '刷新'}`);
+    handleCommand ({ key }) {
+      this.$message.info(`你点击了${key === 'edit' ? '编辑' : '刷新'}`);
     }
   }
 };
 </script>
 <style lang="less">
-.other-charts-container{
-    .extra-wrapper{
-        position: relative;
-    }
-    .el-radio-group{
-        width: 260px;
-        position: absolute;
-        right: -40px;
-        bottom: -7px;
-    }
+.other-charts-container {
+  .extra-wrapper {
+    position: relative;
+  }
+  .el-radio-group {
+    width: 260px;
+    position: absolute;
+    right: -40px;
+    bottom: -7px;
+  }
 }
 </style>
 <style lang="less" scoped>
+.el-dropdown-link {
+  cursor: pointer;
+}
 </style>

@@ -1,10 +1,14 @@
 <template>
-    <div class="trend-wrapper">
-        <span>
-            <slot></slot>
-            <Icon class="trend-icon" :type="flag === 'up' ? 'md-arrow-dropup' : 'md-arrow-dropdown'" :size="18"></Icon>
-        </span>
-    </div>
+  <div class="trend-wrapper">
+    <span>
+      <slot></slot>
+      <a-icon
+        :class="['trend-icon', flag === 'up' ? 'arrow-up' : 'arrow-down']"
+        :type="flag === 'up' ? 'arrow-up' : 'arrow-down'"
+        :size="18"
+      ></a-icon>
+    </span>
+  </div>
 </template>
 
 <script>
@@ -16,23 +20,23 @@ export default {
       default: 'up'
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
-    .trend-wrapper{
-        display: inline-block;
-        &:not(last-child){
-            margin-right: 20px;
-        }
-        .trend-icon{
-            margin-left: 5px;
-        }
-        i.ivu-icon-md-arrow-dropup{
-            color:#f5222d;
-        }
-        i.ivu-icon-md-arrow-dropdown{
-            color:#52c41a;
-        }
+.trend-wrapper {
+  display: inline-block;
+  &:not(last-child) {
+    margin-right: 20px;
+  }
+  .trend-icon {
+    margin-left: 5px;
+    &.arrow-down {
+      color: #ff4d4f;
     }
+    &.arrow-up {
+      color: #52c41a;
+    }
+  }
+}
 </style>

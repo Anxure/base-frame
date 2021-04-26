@@ -1,7 +1,7 @@
 /*
  * @Author: ykx
  * @Date: 2021-01-15 17:03:38
- * @LastEditTime: 2021-04-25 10:18:28
+ * @LastEditTime: 2021-04-26 11:27:56
  * @LastEditors: your name
  * @Description: 按需加载ant-design-vue组件
  * @FilePath: \zdww-base-frame\src\plugins\useAntd.js
@@ -40,7 +40,8 @@ import {
   TimePicker,
   Upload,
   Popover,
-  Select
+  Select,
+  Table
 } from 'ant-design-vue'
 const {
   Header: LayoutHeader,
@@ -50,7 +51,6 @@ const {
 const { Group: RadioGroup, Button: RadioButton } = Radio
 const { Item: FormItem } = Form
 const { Item: FormModelItem } = FormModel
-const { TabPane } = Tabs
 const antdComponents = [
   Breadcrumb,
   Dropdown,
@@ -67,7 +67,6 @@ const antdComponents = [
   LayoutSider,
   LayoutContent,
   Tabs,
-  TabPane,
   Card,
   Tooltip,
   AutoComplete,
@@ -91,7 +90,8 @@ const antdComponents = [
   TimePicker,
   Upload,
   Popover,
-  Select
+  Select,
+  Table
 ]
 Vue.prototype.$confirm = Modal.confirm
 Vue.prototype.$message = message;

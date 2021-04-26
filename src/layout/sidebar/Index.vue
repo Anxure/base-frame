@@ -16,7 +16,7 @@
     >
       <template v-for="item in currentMenuRoutes">
         <a-menu-item
-          v-if="(item.children && item.children.length === 0) || !item.children"
+          v-if="(!item.hidden && item.children && item.children.length === 0) || !item.children"
           :key="item.path"
         >
           <app-link :to="item.path">

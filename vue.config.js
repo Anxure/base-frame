@@ -107,17 +107,6 @@ module.exports = {
       ])
     }
   },
-  // 构建多页应用，单页应用的话使用默认的就可以
-  //   pages: {
-  //     index: {
-  //         // 入口文件
-  //         entry: './src/main.js',
-  //         // 模版文件
-  //         template: 'public/index.html',
-  //         // 输出文件名
-  //         filename: 'index.html'
-  //     }
-  // },
   css: {
     extract: IS_PRODUCTION,
     sourceMap: false,
@@ -127,12 +116,6 @@ module.exports = {
           javascriptEnabled: true
         }
       }
-      // rem转换 不需要的可以注释
-      // postcss: {
-      //   plugins: [
-      //     require('postcss-px2rem')({ remUnit: 100 }) // 换算的基数
-      //   ]
-      // }
     }
   },
   devServer: {
