@@ -108,7 +108,7 @@ export default {
   .main-content {
     background-color: @normalBg;
     transition: margin-left 0.28s;
-    min-height: calc(100vh - 60px);
+    min-height: 100vh;
 
     .main-content-body {
       padding: @base-margin;

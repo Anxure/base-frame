@@ -1,98 +1,22 @@
 <template>
   <Row :gutter="20">
     <Col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
-          <span>总销售额</span>
-          <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
-        </div>
-        <div>
-          <p class="total">{{200000 | toThousandFilter('¥')}}</p>
-          <div class="middle-info">
-            <div class="trend-list">
-              <Trend>
-                周同比
-                <span class="trend-text">12%</span>
-              </Trend>
-              <Trend flag="down">
-                日同比
-                <span class="trend-text">15%</span>
-              </Trend>
-            </div>
-          </div>
-        </div>
-        <div slot="footer" class="footer">
-          <p class="daily-num">
-            <span class="daily-num-label">日销售额</span>
-            {{200000 | toThousandFilter('¥')}}
-          </p>
-        </div>
-      </CardBlock>
-    </Col>
-    <Col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
-          <span>日访问量</span>
-            <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
-        </div>
-        <div>
-          <p class="total">{{200000 | toThousandFilter()}}</p>
-          <div style="margin-bottom:15px">
-            <MiniArea :chartData="miniAreaData"></MiniArea>
-          </div>
-        </div>
-        <div slot="footer" class="footer">
-          <p class="daily-num">
-            <span class="daily-num-label">日访问量</span>
-            {{200000 | toThousandFilter()}}
-          </p>
-        </div>
-      </CardBlock>
-    </Col>
-    <Col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
-          <span>支付笔数</span>
-         <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
-        </div>
-        <div>
-          <p class="total">{{200000 | toThousandFilter()}}</p>
-          <div style="margin-bottom:15px">
-            <MiniBar></MiniBar>
-          </div>
-        </div>
-        <div slot="footer" class="footer">
-          <p class="daily-num">
-            <span class="daily-num-label">转化率</span>
-            60%
-          </p>
-        </div>
-      </CardBlock>
-    </Col>
-    <Col :span="6">
-      <CardBlock>
-        <div class="header clearfix">
-          <span>运营活动效果</span>
-          <Tooltip  theme="dark" content="介绍" placement="top">
-            <Icon type="ios-information-circle-outline" :size="18"/>
-          </Tooltip>
-        </div>
-        <div>
-          <p class="total">70%</p>
-          <div class="middle-info">
-            <div class="trend-list" style="display: flex;align-items: center;width:100%">
-              <MiniProgress :percent="percent" :strokeWidth="8"></MiniProgress>
-            </div>
-          </div>
-        </div>
-        <div slot="footer" class="footer">
-          <div class="trend-list bto">
+    <CardBlock title="总销售额">
+      <Tooltip
+        slot="extra"
+        theme="dark"
+        content="介绍"
+        placement="top"
+      >
+        <Icon
+          type="ios-information-circle-outline"
+          :size="18"
+        />
+      </Tooltip>
+      <div>
+        <p class="total">{{200000 | toThousandFilter('¥')}}</p>
+        <div class="middle-info">
+          <div class="trend-list">
             <Trend>
               周同比
               <span class="trend-text">12%</span>
@@ -103,7 +27,121 @@
             </Trend>
           </div>
         </div>
-      </CardBlock>
+      </div>
+      <div
+        slot="footer"
+        class="footer"
+      >
+        <p class="daily-num">
+          <span class="daily-num-label">日销售额</span>
+          {{200000 | toThousandFilter('¥')}}
+        </p>
+      </div>
+    </CardBlock>
+    </Col>
+    <Col :span="6">
+    <CardBlock title="日访问量">
+      <Tooltip
+        slot="extra"
+        theme="dark"
+        content="介绍"
+        placement="top"
+      >
+        <Icon
+          type="ios-information-circle-outline"
+          :size="18"
+        />
+      </Tooltip>
+      <div>
+        <p class="total">{{200000 | toThousandFilter()}}</p>
+        <div style="margin-bottom:15px">
+          <MiniArea :chartData="miniAreaData"></MiniArea>
+        </div>
+      </div>
+      <div
+        slot="footer"
+        class="footer"
+      >
+        <p class="daily-num">
+          <span class="daily-num-label">日访问量</span>
+          {{200000 | toThousandFilter()}}
+        </p>
+      </div>
+    </CardBlock>
+    </Col>
+    <Col :span="6">
+    <CardBlock title="支付笔数">
+      <Tooltip
+        slot="extra"
+        theme="dark"
+        content="介绍"
+        placement="top"
+      >
+        <Icon
+          type="ios-information-circle-outline"
+          :size="18"
+        />
+      </Tooltip>
+      <div>
+        <p class="total">{{200000 | toThousandFilter()}}</p>
+        <div style="margin-bottom:15px">
+          <MiniBar></MiniBar>
+        </div>
+      </div>
+      <div
+        slot="footer"
+        class="footer"
+      >
+        <p class="daily-num">
+          <span class="daily-num-label">转化率</span>
+          60%
+        </p>
+      </div>
+    </CardBlock>
+    </Col>
+    <Col :span="6">
+    <CardBlock title="运营活动效果">
+      <Tooltip
+        slot="extra"
+        theme="dark"
+        content="介绍"
+        placement="top"
+      >
+        <Icon
+          type="ios-information-circle-outline"
+          :size="18"
+        />
+      </Tooltip>
+      <div>
+        <p class="total">70%</p>
+        <div class="middle-info">
+          <div
+            class="trend-list"
+            style="display: flex;align-items: center;width:100%"
+          >
+            <MiniProgress
+              :percent="percent"
+              :strokeWidth="8"
+            ></MiniProgress>
+          </div>
+        </div>
+      </div>
+      <div
+        slot="footer"
+        class="footer"
+      >
+        <div class="trend-list bto">
+          <Trend>
+            周同比
+            <span class="trend-text">12%</span>
+          </Trend>
+          <Trend flag="down">
+            日同比
+            <span class="trend-text">15%</span>
+          </Trend>
+        </div>
+      </div>
+    </CardBlock>
     </Col>
   </Row>
 </template>

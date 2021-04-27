@@ -20,8 +20,8 @@
       </header>
       <div class="chart-display-wrapper">
         <div class="line-block middle">
-          <el-row class="full-block">
-            <el-col :span="6" class="full-block">
+          <Row class="full-block">
+            <Col :span="6" class="full-block">
               <div class="block-info middle-block">
                 <sort-list
                   sortTitle="网评检测分析-好评TOP10"
@@ -32,47 +32,47 @@
               <div class="block-info middle-block">
                 <Bar :option="dataSource" theme="screen" height="100%" />
               </div>
-            </el-col>
-            <el-col :span="12" style="position:relative;height:100%" >
+            </Col>
+            <Col :span="12" style="position:relative;height:100%" >
               <map-timeline></map-timeline>
               <div class="marquee-wrapper" style="display:none">
                 <Marquee :content="marqueeData"></Marquee>
               </div>
-            </el-col>
-            <el-col :span="6"  class="full-block">
+            </Col>
+            <Col :span="6"  class="full-block">
               <div class="block-info middle-block">
                 <group-list title="六要素好评分析率" :data="sixElemData"></group-list>
               </div>
               <div class="block-info middle-block">
                  <line-chart :option="scenicGradeOption" theme="screen"/>
               </div>
-            </el-col>
-          </el-row>
+            </Col>
+          </Row>
         </div>
         <div class="line-block">
-          <el-row class="full-block">
-            <el-col :span="6" class="full-block">
+          <Row class="full-block">
+            <Col :span="6" class="full-block">
                <div class="block-info full-block">
                  <Pie :option="touristSexOption" theme="screen" />
                </div>
-            </el-col>
-            <el-col :span="12" class="full-block">
+            </Col>
+            <Col :span="12" class="full-block">
               <div class="block-info full-block">
                 <Bar
                   :option="tourNewOldOption"
                   theme="screen"
                 />
               </div>
-            </el-col>
-            <el-col :span="6" class="full-block">
+            </Col>
+            <Col :span="6" class="full-block">
               <div class="block-info full-block">
                 <Radar
                   :option="carInfoOption"
                   theme="screen"
                 />
               </div>
-            </el-col>
-          </el-row>
+            </Col>
+          </Row>
         </div>
       </div>
     </div>
@@ -364,7 +364,7 @@ export default {
           }
         }
         .chart-display-wrapper{
-          height:95vh;
+          height:100vh;
           padding-top:5vh;
           .line-block{
             overflow: hidden;

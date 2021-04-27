@@ -2,49 +2,69 @@
 <template>
   <card-block>
     <Tabs v-model="active">
-      <TabPane label="销售额(柱状)" name="sale">
+      <TabPane
+        label="销售额(柱状)"
+        name="sale"
+      >
         <Row :gutter="20">
           <Col :span="16">
-            <Bar v-if="active === 'sale'" :option="dataSalesSource" />
+          <Bar
+            v-if="active === 'sale'"
+            :option="dataSalesSource"
+          />
           </Col>
           <Col :span="8">
-            <div class="rank-wrapper">
-              <h4>
-                门店前10名销售额排名情况
-              </h4>
-              <ul>
-                <li v-for="(item, index) in rankSalesList" :key="item.id" :class="{active: index < 3}">
-                  <span>
-                    <i class="order-icon">{{index+1}}</i>
-                    <span>{{item.name}}</span>
-                  </span>
-                  <span class="sale-total">{{item.saleTotal}}</span>
-                </li>
-              </ul>
-            </div>
+          <div class="rank-wrapper">
+            <h4>
+              门店前10名销售额排名情况
+            </h4>
+            <ul>
+              <li
+                v-for="(item, index) in rankSalesList"
+                :key="item.id"
+                :class="{active: index < 3}"
+              >
+                <span>
+                  <i class="order-icon">{{index+1}}</i>
+                  <span>{{item.name}}</span>
+                </span>
+                <span class="sale-total">{{item.saleTotal}}</span>
+              </li>
+            </ul>
+          </div>
           </Col>
         </Row>
       </TabPane>
-      <TabPane label="访问量(折线)" name="visited">
+      <TabPane
+        label="访问量(折线)"
+        name="visited"
+      >
         <Row :gutter="20">
           <Col :span="16">
-            <line-chart v-if="active === 'visited'" :option="dataVisitedSource" />
+          <line-chart
+            v-if="active === 'visited'"
+            :option="dataVisitedSource"
+          />
           </Col>
           <Col :span="8">
-            <div class="rank-wrapper">
-              <h4>
-                门店前10名访问量排名情况
-              </h4>
-              <ul>
-                <li v-for="(item, index) in rankVisitedList" :key="item.id" :class="{active: index < 3}">
-                  <span>
-                    <i class="order-icon">{{index+1}}</i>
-                    <span>{{item.name}}</span>
-                  </span>
-                  <span class="sale-total">{{item.saleTotal}}</span>
-                </li>
-              </ul>
-            </div>
+          <div class="rank-wrapper">
+            <h4>
+              门店前10名访问量排名情况
+            </h4>
+            <ul>
+              <li
+                v-for="(item, index) in rankVisitedList"
+                :key="item.id"
+                :class="{active: index < 3}"
+              >
+                <span>
+                  <i class="order-icon">{{index+1}}</i>
+                  <span>{{item.name}}</span>
+                </span>
+                <span class="sale-total">{{item.saleTotal}}</span>
+              </li>
+            </ul>
+          </div>
           </Col>
         </Row>
       </TabPane>
@@ -53,11 +73,8 @@
 </template>
 
 <script>
-import CardBlock from '@/components/CardBlock/Index.vue'
-import {
-  Bar,
-  LineChart
-} from '@/components/Charts'
+import CardBlock from '@/components/CardBlock/Index.vue';
+import { Bar, LineChart } from '@/components/Charts';
 export default {
   name: 'Dashboard',
   data () {
@@ -72,53 +89,55 @@ export default {
         yAxis: {
           name: '销售趋势'
         },
-        series: [{
-          name: '第一季度',
-          type: 'bar',
-          data: [200, 400, 500, 800]
-        },
-        {
-          name: '第二季度',
-          type: 'bar',
-          data: [204, 410, 560, 700]
-        }
+        series: [
+          {
+            name: '第一季度',
+            type: 'bar',
+            data: [200, 400, 500, 800]
+          },
+          {
+            name: '第二季度',
+            type: 'bar',
+            data: [204, 410, 560, 700]
+          }
         ]
       },
-      rankSalesList: [{
-        name: 'xx路1号店面',
-        saleTotal: 20000,
-        id: 687
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 10620,
-        id: 688
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 10300,
-        id: 689
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 10200,
-        id: 690
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 9000,
-        id: 691
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 8000,
-        id: 692
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 7000,
-        id: 693
-      }
+      rankSalesList: [
+        {
+          name: 'xx路1号店面',
+          saleTotal: 20000,
+          id: 687
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 10620,
+          id: 688
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 10300,
+          id: 689
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 10200,
+          id: 690
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 9000,
+          id: 691
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 8000,
+          id: 692
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 7000,
+          id: 693
+        }
       ],
       dataVisitedSource: {
         xAxis: {
@@ -128,68 +147,73 @@ export default {
         yAxis: {
           name: '销售趋势'
         },
-        series: [{
-          name: '第一季度',
-          type: 'line',
-          data: [200, 400, 100, 800]
-        },
-        {
-          name: '第二季度',
-          type: 'line',
-          data: [204, 50, 560, 700]
-        }
+        series: [
+          {
+            name: '第一季度',
+            type: 'line',
+            data: [200, 400, 100, 800]
+          },
+          {
+            name: '第二季度',
+            type: 'line',
+            data: [204, 50, 560, 700]
+          }
         ]
       },
-      rankVisitedList: [{
-        name: 'xx路1号店面',
-        saleTotal: 20000,
-        id: 687
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 10600,
-        id: 688
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 10300,
-        id: 689
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 10200,
-        id: 690
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 9000,
-        id: 691
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 8000,
-        id: 692
-      },
-      {
-        name: 'xx路1号店面',
-        saleTotal: 7000,
-        id: 693
-      }
+      rankVisitedList: [
+        {
+          name: 'xx路1号店面',
+          saleTotal: 20000,
+          id: 687
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 10600,
+          id: 688
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 10300,
+          id: 689
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 10200,
+          id: 690
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 9000,
+          id: 691
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 8000,
+          id: 692
+        },
+        {
+          name: 'xx路1号店面',
+          saleTotal: 7000,
+          id: 693
+        }
       ]
-    }
+    };
   },
   components: {
     CardBlock,
     Bar,
     LineChart
   },
-  mounted () { }
-}
+  mounted () {}
+};
 </script>
 
 <style lang="less" scoped>
-@import '~@/assets/style/variables.less';
+@import "~@/assets/style/variables.less";
 .rank-wrapper {
+  h4 {
+    margin-bottom: 20px;
+  }
   li {
     height: @base-height;
     line-height: @base-height;
