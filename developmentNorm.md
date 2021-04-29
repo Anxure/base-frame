@@ -8,7 +8,7 @@
 简单、易读、易实施执行
 ## 二、构建项目目录
 ```
-zdww-base-frame
+base-frame
 ├─ mock
 ├─ public
 ├─ src
