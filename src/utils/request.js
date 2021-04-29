@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { HTTP_CODE } from '@/config/dict'
-import { Message } from 'view-design';
+import { Message } from 'ant-design-vue';
 const baseURL = process.env.VUE_APP_MOCK ? '/mock' : process.env.NODE_ENV === 'development' ? '/api' : process.env.VUE_APP_BASE_API
 const request = axios.create({
   timeout: 10000,
