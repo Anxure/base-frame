@@ -1,9 +1,9 @@
 <template>
-    <Card class="chart-card-container">
+    <Card class="chart-card-container" v-bind="$attrs">
         <div slot="title"  v-if="showTitleSlot">
           <slot name="title"></slot>
         </div>
-        <div slot="extra"  v-if="showTitleSlot">
+        <div slot="extra"  v-if="showExtraSlot">
             <slot name="extra"></slot>
         </div>
         <div :style="{height: typeof bodyH === 'string' ? bodyH : bodyH + 'px'}">

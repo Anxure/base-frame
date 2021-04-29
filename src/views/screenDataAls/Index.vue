@@ -364,7 +364,7 @@ export default {
           }
         }
         .chart-display-wrapper{
-          height:95vh;
+          height:100vh;
           padding-top:5vh;
           .line-block{
             overflow: hidden;

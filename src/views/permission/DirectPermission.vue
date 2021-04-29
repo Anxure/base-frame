@@ -14,7 +14,7 @@
       <template slot-scope="{ row, index }" slot="action">
         <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)"
           v-permission="['add', 'admin']">添加</Button>
-        <Button type="error" size="small" style="margin-right: 5px" @click="remove(index)"
+        <Button type="error" size="small" style="margin-right: 5px" @click="handleEdit(index)"
           v-permission="['edit', 'admin']">编辑</Button>
         <Button type="error" size="small" @click="remove(index)" v-permission="['delete', 'admin']">删除</Button>
       </template>
@@ -84,6 +84,15 @@ export default {
     }
   },
   methods: {
+    remove () {
+      console.log('删除功能')
+    },
+    show () {
+      console.log('添加功能')
+    },
+    handleEdit () {
+      console.log('编辑功能')
+    },
     async changeRole (row) {
       console.log(row)
       const { code, data } = await this.$api.user.changeRole({
